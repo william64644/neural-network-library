@@ -10,3 +10,36 @@ A1 * [A1B1 A1B2 A1B3]
 A2 * [A2B1 A2B2 A2B3]
 A3 * [A3B1 A3B2 A3B3]
 
+vector<float> calculate_layer(vector<float> A, vector<float> B, vector<vector<float>> AB_weights)
+{
+    vector<float> result;
+    for (int i = 0; i < A.size(); i++)
+    {
+        float sum = 0;
+        for (int j = 0; j < A.size(); j++)
+        {
+            sum += A[j] * AB_weights[j][i];
+        }
+        result.push_back(sum);
+    }
+    return result;
+}
+
+colored printing
+
+echo "\033[1;32mbold green text"
+\033 - default
+\033[1;32m - bold green
+\033[4m - underlined
+\033[0;32m - green
+\033[3m - italic
+\033[1;3m - bold italic
+\033[1;4m - bold underlined
+\033[1;31m - bold red
+\033[0;31m - red
+\033[1;33m - bold yellow
+\033[0;33m - yellow
+\033[1;34m - bold blue
+\033[0;34m - blue
+\033[1;35m - bold purple
+\033[0;35m - purple

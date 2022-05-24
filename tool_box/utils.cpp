@@ -36,9 +36,9 @@ vector<string> split(string str, char delimiter = ' ')
 void data_randomizer(vector<vector<float>> &data)
 {
     srand(time(NULL));
-    for (int i = 0; i < data.size(); i++)
+    for (unsigned int i = 0; i < data.size(); i++)
     {
-        for (int j = 0; j < data[i].size(); j++)
+        for (unsigned int j = 0; j < data[i].size(); j++)
         {
             data[i][j] = (rand() % 100) / 100.0;
         }
