@@ -48,10 +48,10 @@ void data_randomizer(vector<vector<float>> &data)
 vector<float> calculate_layer(vector<float> A, vector<float> *B, vector<vector<float>> AB_weights)
 {
     vector<float> result;
-    for (int i = 0; i < A.size(); i++)
+    for (unsigned int i = 0; i < A.size(); i++)
     {
         float sum = 0;
-        for (int j = 0; j < A.size(); j++)
+        for (unsigned int j = 0; j < A.size(); j++)
         {
             sum += A[j] * AB_weights[j][i];
         }
