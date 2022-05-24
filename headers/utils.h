@@ -10,6 +10,6 @@ vector<string> split(string str, char delimiter); // split a string into a vecto
 
 void data_randomizer(vector<vector<float>> &data); // randomize vector of vectors of floats
 
-vector<float> calculate_layer(vector<float> A, vector<float> *B, vector<vector<float>> AB_weights); // calculate a layer of a neural network
+vector<float> multiply_vector_by_matrix(vector<float> vec, vector<vector<float>> matrix); // multiply vector by matrix
 
 #include "../tool_box/utils.cpp"

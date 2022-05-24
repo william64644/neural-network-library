@@ -45,18 +45,17 @@ void data_randomizer(vector<vector<float>> &data)
     }
 }
 
-vector<float> calculate_layer(vector<float> A, vector<float> *B, vector<vector<float>> AB_weights)
+vector<float> multiply_vector_by_matrix(vector<float> vec, vector<vector<float>> matrix)
 {
     vector<float> result;
-    for (unsigned int i = 0; i < A.size(); i++)
+    for (unsigned int i = 0; i < matrix.size(); i++)
     {
         float sum = 0;
-        for (unsigned int j = 0; j < A.size(); j++)
+        for (unsigned int j = 0; j < vec.size(); j++)
         {
-            sum += A[j] * AB_weights[j][i];
+            sum += vec[j] * matrix[i][j];
         }
         result.push_back(sum);
     }
-    *B = result;
     return result;
 }
