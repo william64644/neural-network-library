@@ -1,5 +1,5 @@
 # Homemamde Neural Network
-### slowly but surely developing a neural netword framework
+### slowly but surely developing a neural network framework
 
 ## File handeling functions:
 
