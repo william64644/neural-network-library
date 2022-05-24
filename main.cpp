@@ -6,7 +6,7 @@
 #include "headers/utils.h"
 
 // use stoi() to convert string to int
-// use stof() to convert string to floatt
+// use stof() to convert string to float
 
 using namespace std;
 
