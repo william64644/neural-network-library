@@ -22,6 +22,16 @@ A2 * [A2B1 A2B2 A2B3 A2B4 A2B5]
 A3 * [A3B1 A3B2 A3B3 A3B4 A3B5]
 
 
+The number of neurons in the input layer must be equal to the number of columns in the weight matrix.
+The number of rows in the weight matrix will be equal to the number of neurons in the output layer.
+
+Aj <must be> ABj
+ABi <will be> Bj
+
+
+
+
+
 
 colored printing
 
