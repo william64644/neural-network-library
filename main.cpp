@@ -8,6 +8,19 @@
 
 using namespace std;
 
+void benckmark(Layer &A_layer, Layer &B_layer, Layer &C_layer);
+void benckmark(Layer &A_layer, Layer &B_layer, Layer &C_layer)
+{
+	layer_parser(A_layer, B_layer);
+	layer_parser(B_layer, C_layer);
+
+	matrix_randomizer(A_layer.weights);
+	matrix_randomizer(B_layer.weights);
+
+	print_data(B_layer.neurons);
+	print_data(C_layer.neurons);
+}
+
 int main()
 {
 	vector<vector<float>> AB = dpkg("data/weights/AB");
@@ -28,11 +41,10 @@ int main()
 	C_layer.neurons = C[0];
 
 	cout << '\n';
-
-	layer_parser(A_layer, B_layer);
-	layer_parser(B_layer, C_layer);
-	print_data(B_layer.neurons);
-	print_data(C_layer.neurons);
+	for (int i = 0; i < 1000000; i++)
+	{
+		benckmark(A_layer, B_layer, C_layer);
+	}
 
 	return 0;
-} // assssssssssssssssss
+} // assssssssssssssssssss
