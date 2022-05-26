@@ -4,6 +4,7 @@
 #include <string>
 #include "headers/file_handler.h"
 #include "headers/utils.h"
+#include "headers/core_neural.h"
 
 using namespace std;
 
@@ -14,19 +15,24 @@ int main()
 	vector<vector<float>> A = dpkg("data/neurons/A");
 	vector<vector<float>> B = dpkg("data/neurons/B");
 	vector<vector<float>> C = dpkg("data/neurons/C");
-	data_randomizer(C);
-	print_data(A[0]);
-	cout << '\n';
-	B[0] = multiply_vector_by_matrix(A[0], AB);
-	C[0] = multiply_vector_by_matrix(B[0], BC);
 
-	print_data(B[0]);
-	cout << '\n';
-	print_data(C[0]);
+	Layer A_layer;
+	A_layer.neurons = A[0];
+	A_layer.weights = AB;
 
-	repack(A, "data/neurons/A");
-	repack(B, "data/neurons/B");
-	repack(C, "data/neurons/C");
-	repack(AB, "data/weights/AB");
+	Layer B_layer;
+	B_layer.neurons = B[0];
+	B_layer.weights = BC;
+
+	Layer C_layer;
+	C_layer.neurons = C[0];
+
+	cout << '\n';
+
+	layer_parser(A_layer, B_layer);
+	layer_parser(B_layer, C_layer);
+	print_data(B_layer.neurons);
+	print_data(C_layer.neurons);
+
 	return 0;
-} //
+} // assssssssssssssssss
