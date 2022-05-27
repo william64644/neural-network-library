@@ -8,26 +8,15 @@
 
 using namespace std;
 
-void benckmark(Layer &A_layer, Layer &B_layer, Layer &C_layer);
-void benckmark(Layer &A_layer, Layer &B_layer, Layer &C_layer)
-{
-	layer_parser(A_layer, B_layer);
-	layer_parser(B_layer, C_layer);
-
-	matrix_randomizer(A_layer.weights);
-	matrix_randomizer(B_layer.weights);
-
-	print_data(B_layer.neurons);
-	print_data(C_layer.neurons);
-}
-
 int main()
 {
 	vector<vector<float>> AB = dpkg("data/weights/AB");
 	vector<vector<float>> BC = dpkg("data/weights/BC");
+	vector<vector<float>> CD = dpkg("data/weights/CD");
 	vector<vector<float>> A = dpkg("data/neurons/A");
 	vector<vector<float>> B = dpkg("data/neurons/B");
 	vector<vector<float>> C = dpkg("data/neurons/C");
+	vector<vector<float>> D = dpkg("data/neurons/D");
 
 	Layer A_layer;
 	A_layer.neurons = A[0];
@@ -39,12 +28,31 @@ int main()
 
 	Layer C_layer;
 	C_layer.neurons = C[0];
+	C_layer.weights = CD;
 
-	cout << '\n';
-	for (int i = 0; i < 1000000; i++)
-	{
-		benckmark(A_layer, B_layer, C_layer);
-	}
+	Layer D_layer;
+	D_layer.neurons = D[0];
+
+	layer_parser(A_layer, B_layer);
+	layer_parser(B_layer, C_layer);
+	layer_parser(C_layer, D_layer);
+
+	matrix_randomizer(A_layer.weights);
+	matrix_randomizer(B_layer.weights);
+	matrix_randomizer(C_layer.weights);
+
+	print_data(A_layer.neurons);
+	print_data(B_layer.neurons);
+	print_data(C_layer.neurons);
+	print_data(D_layer.neurons);
+
+	repack(A_layer.weights, "data/weights/AB");
+	repack(B_layer.weights, "data/weights/BC");
+	repack(C_layer.weights, "data/weights/CD");
+	vector_packager(A_layer.neurons, "data/neurons/A");
+	vector_packager(B_layer.neurons, "data/neurons/B");
+	vector_packager(C_layer.neurons, "data/neurons/C");
+	vector_packager(D_layer.neurons, "data/neurons/D");
 
 	return 0;
 } // assssssssssssssssssss

@@ -62,3 +62,10 @@ void repack(vector<vector<float>> data, string output_file)
     }
     write_file(output, output_file);
 }
+
+void vector_packager(vector<float> data, string file_name)
+{
+    vector<vector<float>> matrix(1);
+    matrix[0] = data;
+    repack(matrix, file_name);
+}
