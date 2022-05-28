@@ -5,54 +5,66 @@
 #include "headers/file_handler.h"
 #include "headers/utils.h"
 #include "headers/core_neural.h"
+#include "headers/data_types.h"
 
 using namespace std;
 
+vector<vector<float>> matrix_creator(unsigned int x_size, unsigned int y_size)
+{
+	return vector<vector<float>>(y_size, vector<float>(x_size));
+}
+
+void create_weights()
+{
+}
+
+void create_neurons(vector<float> neurons_sizes, string neurons_folder)
+{
+}
+
+void network_architect(vector<int> neurons_sizes, string weights_foler, string neurons_folder)
+{
+	const int layers_ammount = neurons_sizes.size();
+	const char neurons_names[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+	const string weights_names[9] = {"AB", "BC", "CD", "DE", "EF", "FG", "GH", "HI", "IJ"};
+
+	for (unsigned int i = 0; i < layers_ammount; i++)
+	{
+		unsigned int ammount_of_weights_vectors = neurons_sizes[i];
+	}
+}
+
 int main()
 {
-	vector<vector<float>> AB = dpkg("data/weights/AB");
-	vector<vector<float>> BC = dpkg("data/weights/BC");
-	vector<vector<float>> CD = dpkg("data/weights/CD");
-	vector<vector<float>> A = dpkg("data/neurons/A");
-	vector<vector<float>> B = dpkg("data/neurons/B");
-	vector<vector<float>> C = dpkg("data/neurons/C");
-	vector<vector<float>> D = dpkg("data/neurons/D");
 
-	Layer A_layer;
-	A_layer.neurons = A[0];
-	A_layer.weights = AB;
-
-	Layer B_layer;
-	B_layer.neurons = B[0];
-	B_layer.weights = BC;
-
-	Layer C_layer;
-	C_layer.neurons = C[0];
-	C_layer.weights = CD;
-
-	Layer D_layer;
-	D_layer.neurons = D[0];
-
-	layer_parser(A_layer, B_layer);
-	layer_parser(B_layer, C_layer);
-	layer_parser(C_layer, D_layer);
-
-	matrix_randomizer(A_layer.weights);
-	matrix_randomizer(B_layer.weights);
-	matrix_randomizer(C_layer.weights);
-
-	print_data(A_layer.neurons);
-	print_data(B_layer.neurons);
-	print_data(C_layer.neurons);
-	print_data(D_layer.neurons);
-
-	repack(A_layer.weights, "data/weights/AB");
-	repack(B_layer.weights, "data/weights/BC");
-	repack(C_layer.weights, "data/weights/CD");
-	vector_packager(A_layer.neurons, "data/neurons/A");
-	vector_packager(B_layer.neurons, "data/neurons/B");
-	vector_packager(C_layer.neurons, "data/neurons/C");
-	vector_packager(D_layer.neurons, "data/neurons/D");
+	// vector<Layer> network = network_architect({3, 4, 3});
 
 	return 0;
 } // assssssssssssssssssss
+
+/*
+
+neurons = {3, 4, 3}
+neurons_ammount = neurons.size()
+
+create A neurons file with 3 floats
+
+create AB weights file with 3 lines and 4 values each
+
+create B weights file with 4 floats
+
+create BC weights file with 4 lines and 3 values each
+
+create C neurons file with 3 floats
+
+
+
+create <neurons_ammount> neurons files A B C...
+looping <neurons_ammount>
+	A neurons file has <neurons[0]> floats
+	B neurons file has <neurons[1]> floats
+	B neurons file has <neurons[2]> floats
+
+
+
+*/

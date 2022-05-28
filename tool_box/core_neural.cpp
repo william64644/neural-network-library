@@ -1,13 +1,8 @@
 #include <vector>
 #include <sstream>
+#include "../headers/data_types.h"
 
 using namespace std;
-
-struct Layer
-{
-    vector<float> neurons;
-    vector<vector<float>> weights;
-};
 
 void matrix_randomizer(vector<vector<float>> &data)
 {

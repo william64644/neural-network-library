@@ -71,6 +71,7 @@
     "typeinfo": "cpp",
     "variant": "cpp",
     "semaphore": "cpp",
-    "__nullptr": "cpp"
+    "__nullptr": "cpp",
+    "__split_buffer": "cpp"
   }
 }
