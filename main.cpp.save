@@ -2,7 +2,6 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <stdlib.h>
 #include "headers/file_handler.h"
 #include "headers/utils.h"
 #include "headers/core_neural.h"
@@ -10,22 +9,10 @@
 
 using namespace std;
 
-
-double absolute_difference(double test_set[], double values[])
-{
-	double difference;
-	const unsigned int lenght = sizeof(values)/sizeof(values[0]);
-	for (unsigned int i = 0; i < lenght; i++)
-	{
-		difference += abs(test_set[i] - values[i]);
-	}
-	return difference;
-}
-
 int main()
 {
 
-	double test_set[3][2][3] = {{{1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}},{{0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}},{{0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f}}};
+	///loat test_set[3][2][3] = {{{1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}},{{0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}},{{0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f}}};
 
 	const char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
@@ -48,7 +35,7 @@ int main()
 
 	vector<vector<double>> results;
 
-	for (unsigned int i = 0; i < 1; i++)
+	for (unsigned int i = 0; i < 2; i++)
 	{
 		matrix_randomizer(input.weights);
 
@@ -58,17 +45,18 @@ int main()
 	}
 	results = matrix_transponser(results);
 
-	double averages[3] = {average(results[0]), average(results[1]), average(results[2])};
+	Vector3 error = {(average(results[0])) * -1, (average(results[1]) - 1) * -1, (average(results[2])) * -1};
 
-	double error = absolute_difference(test_set[0][1], averages);
+	vector<double>
+		averages = {average(results[0]), average(results[1]), average(results[2])};
 
-	print_data(averages);
+	cout << averages[0] << " error: " << error.x << '\n';
+	cout << averages[1] << " error: " << error.y << '\n';
+	cout << averages[2] << " error: " << error.z << '\n';
 
-	print_matrix(input.weights);
+	vector_packager(averages, "data/neurons/B");
+	repack(input.weights, "data/weights/AB");
 
-	cout << '\n';
-
-	cout << error;
 	return 0;
 }
-// sssssssssssssssssssssssssssss
+// sssssssssssssssssssssss
