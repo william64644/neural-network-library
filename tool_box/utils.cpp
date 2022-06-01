@@ -13,7 +13,7 @@ void print_vector(vector<string> vec)
     cout << '\n';
 }
 
-void print_data(vector<float> vec)
+void print_data(vector<double> vec)
 {
     for (unsigned int i1 = 0; i1 < vec.size(); i1++)
     {
@@ -35,17 +35,17 @@ vector<string> split(string str, char delimiter = ' ')
     return words;
 }
 
-vector<float> multiply_vector_by_matrix(vector<float> vec, vector<vector<float>> matrix)
+vector<double> multiply_vector_by_matrix(vector<double> vec, vector<vector<double>> matrix)
 {
     if (vec.size() != matrix[0].size())
     {
         cout << "Error: vector size does not match matrix size\n";
         return vec;
     }
-    vector<float> result;
+    vector<double> result;
     for (unsigned int i = 0; i < matrix.size(); i++)
     {
-        float sum = 0;
+        double sum = 0;
         for (unsigned int j = 0; j < vec.size(); j++)
         {
             sum += vec[j] * matrix[i][j];
@@ -55,9 +55,9 @@ vector<float> multiply_vector_by_matrix(vector<float> vec, vector<vector<float>>
     return result;
 }
 
-vector<float> multiply_scalar_by_vector(vector<float> vec, float scalar)
+vector<double> multiply_scalar_by_vector(vector<double> vec, double scalar)
 {
-    vector<float> result;
+    vector<double> result;
     for (unsigned int i = 0; i < vec.size(); i++)
     {
         result.push_back(vec[i] * scalar);
@@ -65,7 +65,7 @@ vector<float> multiply_scalar_by_vector(vector<float> vec, float scalar)
     return result;
 }
 
-void print_matrix(vector<vector<float>> matrix)
+void print_matrix(vector<vector<double>> matrix)
 {
     for (unsigned int i = 0; i < matrix.size(); i++)
     {
@@ -78,12 +78,12 @@ void print_matrix(vector<vector<float>> matrix)
     cout << '\n';
 }
 
-vector<vector<float>> matrix_transponser(vector<vector<float>> matrix)
+vector<vector<double>> matrix_transponser(vector<vector<double>> matrix)
 {
-    vector<vector<float>> transposed_matrix;
+    vector<vector<double>> transposed_matrix;
     for (unsigned int i = 0; i < matrix[0].size(); i++)
     {
-        vector<float> row;
+        vector<double> row;
         for (unsigned int j = 0; j < matrix.size(); j++)
         {
             row.push_back(matrix[j][i]);
@@ -91,4 +91,14 @@ vector<vector<float>> matrix_transponser(vector<vector<float>> matrix)
         transposed_matrix.push_back(row);
     }
     return transposed_matrix;
+}
+
+double average(vector<double> vec)
+{
+    double sum = 0;
+    for (unsigned int i = 0; i < vec.size(); i++)
+    {
+        sum += vec[i];
+    }
+    return sum / vec.size();
 }

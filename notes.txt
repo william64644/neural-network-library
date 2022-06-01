@@ -30,6 +30,19 @@ ABi <will be> Bj
 
 
 
+////////
+
+i define the number of layers to be 3
+i define the number of neurons in each layer to be 3,4,3
+
+
+
+////////
+
+
+
+
+
 
 
 
@@ -51,3 +64,8 @@ echo "\033[1;32mbold green text"
 \033[0;34m - blue
 \033[1;35m - bold purple
 \033[0;35m - purple
+
+
+rules for a valid neural network
+1. The number of neurons in the input layer must be equal to the number of columns in the weight matrix.
+2. The number of rows in the weight matrix will be equal to the number of neurons in the output layer.

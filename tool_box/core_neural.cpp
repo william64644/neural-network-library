@@ -1,12 +1,13 @@
 #include <vector>
 #include <sstream>
+#include <chrono>
 #include "../headers/data_types.h"
 
 using namespace std;
 
-void matrix_randomizer(vector<vector<float>> &data)
+void matrix_randomizer(vector<vector<double>> &data)
 {
-    srand(time(NULL));
+    srand(std::chrono::system_clock::now().time_since_epoch().count());
     for (long unsigned int i = 0; i < data.size(); i++)
     {
         for (long unsigned int j = 0; j < data[i].size(); j++)
@@ -16,7 +17,7 @@ void matrix_randomizer(vector<vector<float>> &data)
     }
 }
 
-void reset_matrix(vector<vector<float>> &matrix)
+void reset_matrix(vector<vector<double>> &matrix)
 {
     for (unsigned int i = 0; i < matrix.size(); i++)
     {
@@ -27,7 +28,7 @@ void reset_matrix(vector<vector<float>> &matrix)
     }
 }
 
-void reset_vector(vector<float> &vec)
+void reset_vector(vector<double> &vec)
 {
     for (unsigned int i = 0; i < vec.size(); i++)
     {

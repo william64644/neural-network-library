@@ -9,62 +9,46 @@
 
 using namespace std;
 
-vector<vector<float>> matrix_creator(unsigned int x_size, unsigned int y_size)
-{
-	return vector<vector<float>>(y_size, vector<float>(x_size));
-}
-
-void create_weights()
-{
-}
-
-void create_neurons(vector<float> neurons_sizes, string neurons_folder)
-{
-}
-
-void network_architect(vector<int> neurons_sizes, string weights_foler, string neurons_folder)
-{
-	const int layers_ammount = neurons_sizes.size();
-	const char neurons_names[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-	const string weights_names[9] = {"AB", "BC", "CD", "DE", "EF", "FG", "GH", "HI", "IJ"};
-
-	for (unsigned int i = 0; i < layers_ammount; i++)
-	{
-		unsigned int ammount_of_weights_vectors = neurons_sizes[i];
-	}
-}
-
 int main()
 {
 
-	// vector<Layer> network = network_architect({3, 4, 3});
+	const char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
+	Layer input(3, 4);
+	Layer hidden1(4, 4);
+	Layer hidden2(4, 4);
+	Layer hidden3(4, 3);
+	Layer output(3, 0);
+
+	// rock paper scissors
+	input.neurons = {3, 0, 0};
+
+	vector<vector<double>> results;
+
+	for (unsigned int i = 0; i < 100000; i++)
+	{
+
+		matrix_randomizer(input.weights);
+		matrix_randomizer(hidden1.weights);
+		matrix_randomizer(hidden2.weights);
+		matrix_randomizer(hidden3.weights);
+		matrix_randomizer(output.weights);
+
+		layer_parser(input, hidden1);
+		layer_parser(hidden1, hidden2);
+		layer_parser(hidden2, hidden3);
+		layer_parser(hidden3, output);
+
+		results.push_back(output.neurons);
+	}
+	results = matrix_transponser(results);
+
+	cout << '\n'
+		 << average(results[0]);
+	cout << '\n'
+		 << average(results[1]);
+	cout << '\n'
+		 << average(results[2]);
 	return 0;
-} // assssssssssssssssssss
-
-/*
-
-neurons = {3, 4, 3}
-neurons_ammount = neurons.size()
-
-create A neurons file with 3 floats
-
-create AB weights file with 3 lines and 4 values each
-
-create B weights file with 4 floats
-
-create BC weights file with 4 lines and 3 values each
-
-create C neurons file with 3 floats
-
-
-
-create <neurons_ammount> neurons files A B C...
-looping <neurons_ammount>
-	A neurons file has <neurons[0]> floats
-	B neurons file has <neurons[1]> floats
-	B neurons file has <neurons[2]> floats
-
-
-
-*/
+}
+// sssssssssssssssssss
