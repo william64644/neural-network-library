@@ -10,12 +10,10 @@
 
 using namespace std;
 
-
-double absolute_difference(double test_set[], double values[])
+double absolute_difference(double test_set[], vector<double> values)
 {
-	double difference;
-	const unsigned int lenght = sizeof(values)/sizeof(values[0]);
-	for (unsigned int i = 0; i < lenght; i++)
+	double difference = 0;
+	for (unsigned int i = 0; i < values.size(); i++)
 	{
 		difference += abs(test_set[i] - values[i]);
 	}
@@ -25,9 +23,7 @@ double absolute_difference(double test_set[], double values[])
 int main()
 {
 
-	double test_set[3][2][3] = {{{1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}},{{0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}},{{0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f}}};
-
-	const char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+	double test_set[3][3] = {{0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}, {1.0, 0.0, 0.0}};
 
 	Layer input(3, 3);
 	Layer output(3, 0);
@@ -43,32 +39,40 @@ int main()
 		1 0 0
 	*/
 
+	matrix_randomizer(input.weights);
+
 	// rock paper scissors
 	input.neurons = {1, 0, 0};
 
-	vector<vector<double>> results;
-
-	for (unsigned int i = 0; i < 1; i++)
-	{
-		matrix_randomizer(input.weights);
-
-		layer_parser(input, output);
-
-		results.push_back(output.neurons);
-	}
-	results = matrix_transponser(results);
-
-	double averages[3] = {average(results[0]), average(results[1]), average(results[2])};
-
-	double error = absolute_difference(test_set[0][1], averages);
-
-	print_data(averages);
-
-	print_matrix(input.weights);
+	layer_parser(input, output);
 
 	cout << '\n';
 
-	cout << error;
+	cout << "input: " << input.neurons[0] << " " << input.neurons[1] << " " << input.neurons[2] << '\n';
+	cout << "output: " << output.neurons[0] << " " << output.neurons[1] << " " << output.neurons[2] << '\n';
+	cout << "error: " << absolute_difference(test_set[0], output.neurons) << '\n';
+
+	input.neurons = {0, 1, 0};
+	layer_parser(input, output);
+
+	cout << '\n';
+
+	cout << "input: " << input.neurons[0] << " " << input.neurons[1] << " " << input.neurons[2] << '\n';
+	cout << "output: " << output.neurons[0] << " " << output.neurons[1] << " " << output.neurons[2] << '\n';
+	cout << "error: " << absolute_difference(test_set[1], output.neurons) << '\n';
+
+	input.neurons = {0, 0, 1};
+	layer_parser(input, output);
+
+	cout << '\n';
+
+	cout << "input: " << input.neurons[0] << " " << input.neurons[1] << " " << input.neurons[2] << '\n';
+	cout << "output: " << output.neurons[0] << " " << output.neurons[1] << " " << output.neurons[2] << '\n';
+	cout << "error: " << absolute_difference(test_set[2], output.neurons) << '\n';
+
+	cout << '\n'
+		 << "total error: " << absolute_difference(test_set[0], output.neurons) + absolute_difference(test_set[1], output.neurons) + absolute_difference(test_set[2], output.neurons) << '\n';
+
 	return 0;
 }
 // sssssssssssssssssssssssssssss

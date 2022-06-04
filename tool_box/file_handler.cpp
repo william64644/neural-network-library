@@ -42,7 +42,7 @@ vector<vector<double>> dpkg(string data_file_path)
     {
         for (unsigned short i2 = 0; i2 < double_strings[i1].size(); i2++)
         {
-            double num = stof(double_strings[i1][i2]);
+            double num = stod(double_strings[i1][i2]);
             output[i1][i2] = num;
         }
         output[i1].erase(output[i1].begin() + static_cast<long int>(double_strings[i1].size()), output[i1].end()); // delete unsused spaces
