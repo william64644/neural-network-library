@@ -11,23 +11,50 @@
 
 using namespace std;
 
-double absolute_difference(double test_set[], vector<double> values)
+void print_layer_data(Layer &layer)
 {
-	double difference = 0;
-	for (unsigned int i = 0; i < values.size(); i++)
+	cout << "================================\n";
+	cout << '\t' << layer.name << " Neurons:" << '\n';
+	print_data(layer.neurons); // print neuron values
+
+	if (layer.weights[0].size() > 0) // only print weights if there are any
 	{
-		difference += abs(test_set[i] - values[i]);
+		cout << '\t' << layer.name << " Weights:" << '\n';
+		print_matrix(layer.weights);
 	}
-	return difference;
+	else
+	{
+		cout << '\t' << layer.name << " Weights: None" << '\n';
+	}
 }
+
+struct Network
+{
+	vector<Layer> layers;
+
+	Network(vector<Layer> layers)
+	{
+		this->layers = layers;
+	}
+
+	void print_network()
+	{
+		for (unsigned int i = 0; i < layers.size(); i++)
+		{
+			print_layer_data(layers[i]);
+		}
+	}
+};
 
 int main()
 {
 
 	double test_set[3][3] = {{0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}, {1.0, 0.0, 0.0}};
 
-	Layer input(3, 3);
-	Layer output(3, 0);
+	Layer input(3, 3, "Input");
+	Layer output(3, 0, "Output");
+
+	Network network({input, output});
 
 	/*
 		1 0 0
@@ -40,66 +67,47 @@ int main()
 		1 0 0
 	*/
 
-	matrix_randomizer(input.weights);
+	matrix_randomizer(network.layers[0].weights);
 
 	// rock paper scissors
-	input.neurons = {1, 0, 0};
+	network.layers[0].neurons = {1.0, 0.0, 0.0};
+	layer_parser(network.layers[0], network.layers[1]);
+	network.print_network();
 
-	layer_parser(input, output);
+	network.layers[0].neurons = {0.0, 1.0, 0.0};
+	layer_parser(network.layers[0], network.layers[1]);
+	network.print_network();
 
-	cout << "input: " << input.neurons[0] << " " << input.neurons[1] << " " << input.neurons[2] << '\n';
-	cout << "output: " << output.neurons[0] << " " << output.neurons[1] << " " << output.neurons[2] << '\n';
-	cout << "error: " << absolute_difference(test_set[0], output.neurons) << '\n';
-
-	input.neurons = {0, 1, 0};
-	layer_parser(input, output);
-
-	cout << '\n';
-
-	cout << "input: " << input.neurons[0] << " " << input.neurons[1] << " " << input.neurons[2] << '\n';
-	cout << "output: " << output.neurons[0] << " " << output.neurons[1] << " " << output.neurons[2] << '\n';
-	cout << "error: " << absolute_difference(test_set[1], output.neurons) << '\n';
-
-	input.neurons = {0, 0, 1};
-	layer_parser(input, output);
-
-	cout << '\n';
-
-	cout << "input: " << input.neurons[0] << " " << input.neurons[1] << " " << input.neurons[2] << '\n';
-	cout << "output: " << output.neurons[0] << " " << output.neurons[1] << " " << output.neurons[2] << '\n';
-	cout << "error: " << absolute_difference(test_set[2], output.neurons) << '\n';
-
-	cout << '\n'
-		 << "total error: "
-		 << absolute_difference(test_set[0], output.neurons) + absolute_difference(test_set[1], output.neurons) + absolute_difference(test_set[2], output.neurons)
-		 << '\n';
+	network.layers[0].neurons = {1.0, 0.0, 1.0};
+	layer_parser(network.layers[0], network.layers[1]);
+	network.print_network();
 
 	//////////////////////////////////////
 	// 		   	    Graphics			//
 	//////////////////////////////////////
+	/*
+		sf::RenderWindow window(sf::VideoMode(900, 500), "My window");
+		window.setFramerateLimit(60);
 
-	sf::RenderWindow window(sf::VideoMode(900, 500), "My window");
-	window.setFramerateLimit(60);
-
-	// run the program as long as the window is open
-	while (window.isOpen())
-	{
-		// check all the window's events that were triggered since the last iteration of the loopp
-		sf::Event event;
-		while (window.pollEvent(event))
+		// run the program as long as the window is open
+		while (window.isOpen())
 		{
-			// "close requested" event: we close the window
-			if (event.type == sf::Event::Closed)
-				window.close();
+			// check all the window's events that were triggered since the last iteration of the loopp
+			sf::Event event;
+			while (window.pollEvent(event))
+			{
+				// "close requested" event: we close the window
+				if (event.type == sf::Event::Closed)
+					window.close();
+			}
+
+			window.clear(sf::Color::Black);
+
+			// draw everything here...
+
+			window.display();
 		}
-
-		window.clear(sf::Color::Black);
-
-		// draw everything here...
-
-		window.display();
-	}
-
+	*/
 	return 0;
 }
-// sssssssssssssssssssssssssssssssssss
+// ssssssssssssssssssssssssssssssssssss

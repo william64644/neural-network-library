@@ -10,10 +10,12 @@ struct Layer // give it the size of the layer and the size of the next layer (0 
 {
     vector<double> neurons;
     vector<vector<double>> weights;
-    Layer(unsigned int size, unsigned int next_layer_size)
+    string name;
+    Layer(unsigned int size, unsigned int next_layer_size, string name = "Layer")
     {
         neurons = vector<double>(size);
         weights = vector<vector<double>>(size, vector<double>(next_layer_size));
+        this->name = name;
     }
 };
 
