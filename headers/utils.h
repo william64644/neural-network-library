@@ -1,21 +1,106 @@
 #pragma once
+
 #include <vector>
+#include <sstream>
+#include <iostream>
+
 using namespace std;
 
-void print_vector(vector<string> vec); // print a vector
+void print_vector(vector<string> vec)
+{
+    for (unsigned int i1 = 0; i1 < vec.size(); i1++)
+    {
+        cout << vec[i1] << '\n';
+    }
+    cout << '\n';
+}
 
-void print_data(vector<double> vec); // print a vector of doubles
+void print_data(vector<double> vec)
+{
+    for (unsigned int i1 = 0; i1 < vec.size(); i1++)
+    {
+        cout << vec[i1] << ' ';
+    }
+    cout << '\n';
+}
 
-vector<string> split(string str, char delimiter); // split a string into a vector of words
+vector<string> split(string str, char delimiter = ' ')
+{
+    vector<string> words;
+    stringstream ss(str); // Turn the string into a stream.
+    string tok;
 
-vector<double> multiply_vector_by_matrix(vector<double> vec, vector<vector<double>> matrix); // multiply vector by matrix
+    while (getline(ss, tok, delimiter))
+    {
+        words.push_back(tok);
+    }
+    return words;
+}
 
-vector<vector<double>> matrix_transponser(vector<vector<double>> matrix);
+vector<double> multiply_vector_by_matrix(vector<double> vec, vector<vector<double>> matrix)
+{
+    if (vec.size() != matrix[0].size())
+    {
+        cout << "Error: vector size does not match matrix size\n";
+        return vec;
+    }
+    vector<double> result;
+    for (unsigned int i = 0; i < matrix.size(); i++)
+    {
+        double sum = 0;
+        for (unsigned int j = 0; j < vec.size(); j++)
+        {
+            sum += vec[j] * matrix[i][j];
+        }
+        result.push_back(sum);
+    }
+    return result;
+}
 
-void print_matrix(vector<vector<double>> matrix);
+vector<double> multiply_scalar_by_vector(vector<double> vec, double scalar)
+{
+    vector<double> result;
+    for (unsigned int i = 0; i < vec.size(); i++)
+    {
+        result.push_back(vec[i] * scalar);
+    }
+    return result;
+}
 
-vector<double> multiply_scalar_by_vector(vector<double> vec, double scalar);
+void print_matrix(vector<vector<double>> matrix)
+{
+    for (unsigned int i = 0; i < matrix.size(); i++)
+    {
+        for (unsigned int j = 0; j < matrix[i].size(); j++)
+        {
+            cout << matrix[i][j] << ' ';
+        }
+        cout << '\n';
+    }
+    cout << '\n';
+}
 
-double average(vector<double> vec);
+vector<vector<double>> matrix_transponser(vector<vector<double>> matrix)
+{
+    vector<vector<double>> transposed_matrix;
+    for (unsigned int i = 0; i < matrix[0].size(); i++)
+    {
+        vector<double> row;
+        for (unsigned int j = 0; j < matrix.size(); j++)
+        {
+            row.push_back(matrix[j][i]);
+        }
+        transposed_matrix.push_back(row);
+    }
+    return transposed_matrix;
+}
 
-#include "../tool_box/utils.cpp"
+double average(vector<double> vec)
+{
+    double sum = 0;
+    for (unsigned int i = 0; i < vec.size(); i++)
+    {
+        sum += vec[i];
+    }
+    return sum / vec.size();
+}
