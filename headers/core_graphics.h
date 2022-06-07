@@ -4,7 +4,7 @@
 #include <iostream>
 #include <chrono>
 #include <SFML/Graphics.hpp>
-#include "/home/night/Documents/GitHub/neural-network-framework/headers/core_neural.h"
+#include "core_neural.h"
 
 using namespace std;
 

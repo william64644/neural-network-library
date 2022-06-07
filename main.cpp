@@ -47,8 +47,6 @@ int main()
 
 	layer_parser(input, output);
 
-	cout << '\n';
-
 	cout << "input: " << input.neurons[0] << " " << input.neurons[1] << " " << input.neurons[2] << '\n';
 	cout << "output: " << output.neurons[0] << " " << output.neurons[1] << " " << output.neurons[2] << '\n';
 	cout << "error: " << absolute_difference(test_set[0], output.neurons) << '\n';
@@ -104,4 +102,4 @@ int main()
 
 	return 0;
 }
-// sssssssssssssssssssssssssssssssss
+// sssssssssssssssssssssssssssssssssss
