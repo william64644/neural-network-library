@@ -44,10 +44,7 @@ void reset_matrix(vector<vector<double>> &matrix)
 
 void reset_vector(vector<double> &vec)
 {
-    for (unsigned int i = 0; i < vec.size(); i++)
-    {
-        vec[i] = 0;
-    }
+    fill(vec.begin(), vec.end(), 0);
 }
 
 void layer_parser(Layer &A_layer, Layer &B_layer)

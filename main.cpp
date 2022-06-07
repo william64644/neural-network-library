@@ -78,7 +78,7 @@ int main()
 	layer_parser(network.layers[0], network.layers[1]);
 	network.print_network();
 
-	network.layers[0].neurons = {1.0, 0.0, 1.0};
+	network.layers[0].neurons = {0.0, 0.0, 1.0};
 	layer_parser(network.layers[0], network.layers[1]);
 	network.print_network();
 
@@ -110,4 +110,4 @@ int main()
 	*/
 	return 0;
 }
-// ssssssssssssssssssssssssssssssssssss
+// sssssssssssssssssssssssssssssssssssss
