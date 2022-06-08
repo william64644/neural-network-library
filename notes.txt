@@ -10,36 +10,18 @@ B3 = A1 * A1B3 + A2 * A2B3 + A3 * A3B3
 B4 = A1 * A1B4 + A2 * A2B4 + A3 * A3B4
 B5 = A1 * A1B5 + A2 * A2B5 + A3 * A3B5
 
-
 B1 - Recives
 A_neurons_vector * AB_weights_vector
-
-
-
 
 A1 * [A1B1 A1B2 A1B3 A1B4 A1B5]
 A2 * [A2B1 A2B2 A2B3 A2B4 A2B5]
 A3 * [A3B1 A3B2 A3B3 A3B4 A3B5]
-
 
 The number of neurons in the input layer must be equal to the number of columns in the weight matrix.
 The number of rows in the weight matrix will be equal to the number of neurons in the output layer.
 
 Aj <must be> ABj
 ABi <will be> Bj
-
-
-
-////////
-
-i define the number of layers to be 3
-i define the number of neurons in each layer to be 3,4,3
-
-
-
-////////
-
-
 
 
 
@@ -65,7 +47,8 @@ echo "\033[1;32mbold green text"
 \033[1;35m - bold purple
 \033[0;35m - purple
 
+Syntax for colored printing with core_graphics.h
 
-rules for a valid neural network
-1. The number of neurons in the input layer must be equal to the number of columns in the weight matrix.
-2. The number of rows in the weight matrix will be equal to the number of neurons in the output layer.
+	cout << RED << "red text" << '\n';
+	cout << BLUE << "blue text" << '\n';
+	cout << RESET << "white text" << '\n';

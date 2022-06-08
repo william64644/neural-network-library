@@ -3,6 +3,7 @@
 #include <vector>
 #include <sstream>
 #include <chrono>
+#include <math.h>
 
 using namespace std;
 
@@ -57,4 +58,8 @@ void layer_parser(Layer &A_layer, Layer &B_layer)
             B_layer.neurons[j] += A_layer.neurons[i] * A_layer.weights[i][j];
         }
     }
+	for (unsigned int k = 0; k < B_layer.neurons.size(); k ++)
+	{
+		B_layer.neurons[k] = tanh(B_layer.neurons[k]);
+	}
 }
