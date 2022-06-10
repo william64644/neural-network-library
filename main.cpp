@@ -53,11 +53,10 @@ int main()
 
 	double test_set[3][3] = {{0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}, {1.0, 0.0, 0.0}};
 
-	Layer input(3, 3, "Input");
-	Layer hidden(3, 3, "Hidden");
-	Layer output(3, 0, "Output");
+	Layer input(3, 4, "Input");
+	Layer output(4, 0, "Output");
 
-	Network network({input, hidden, output});
+	Network network({input, output});
 
 	/*
 		1 0 0
@@ -71,27 +70,23 @@ int main()
 	*/
 
 	matrix_randomizer(network.layers[0].weights);
-	matrix_randomizer(network.layers[1].weights);
 
 	// rock paper scissors
 
 	network.layers[0].neurons = {1.0, 0.0, 0.0};
 	layer_parser(network.layers[0], network.layers[1]);
-	layer_parser(network.layers[1], network.layers[2]);
 	network.print_network();
 
 	cout << "\n\n\n\n";
 
 	network.layers[0].neurons = {0.0, 1.0, 0.0};
 	layer_parser(network.layers[0], network.layers[1]);
-	layer_parser(network.layers[1], network.layers[2]);
 	network.print_network();
 
 	cout << "\n\n\n\n";
 
 	network.layers[0].neurons = {0.0, 0.0, 1.0};
 	layer_parser(network.layers[0], network.layers[1]);
-	layer_parser(network.layers[1], network.layers[2]);
 	network.print_network();
 
 
