@@ -39,10 +39,12 @@ struct Network
 
 	void print_network()
 	{
+		cout << "================================\n";
 		for (unsigned int i = 0; i < layers.size(); i++)
 		{
 			print_layer_data(layers[i]);
 		}
+		cout << "================================\n";
 	}
 };
 
@@ -72,30 +74,26 @@ int main()
 	matrix_randomizer(network.layers[1].weights);
 
 	// rock paper scissors
-	cout << "================================\n";
+
 	network.layers[0].neurons = {1.0, 0.0, 0.0};
 	layer_parser(network.layers[0], network.layers[1]);
 	layer_parser(network.layers[1], network.layers[2]);
 	network.print_network();
 
-	cout << "================================\n";
 	cout << "\n\n\n\n";
 
-	cout << "================================\n";
 	network.layers[0].neurons = {0.0, 1.0, 0.0};
 	layer_parser(network.layers[0], network.layers[1]);
 	layer_parser(network.layers[1], network.layers[2]);
 	network.print_network();
 
-	cout << "================================\n";
 	cout << "\n\n\n\n";
 
-	cout << "================================\n";
 	network.layers[0].neurons = {0.0, 0.0, 1.0};
 	layer_parser(network.layers[0], network.layers[1]);
 	layer_parser(network.layers[1], network.layers[2]);
 	network.print_network();
-	cout << "================================\n";
+
 
 
 	//////////////////////////////////////
@@ -126,4 +124,4 @@ int main()
 	*/
 	return 0;
 }
-// sssssssssssssssssssssssssssssssssssssssssss
+// ssssssssssssssssssssssssssssssssssssssssssssssss
