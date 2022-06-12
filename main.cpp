@@ -13,7 +13,7 @@ using namespace std;
 
 void print_layer_data(Layer &layer)
 {
-	//cout << "================================\n";
+	// cout << "================================\n";
 	cout << '\t' << layer.name << " Neurons:" << '\n';
 	print_data(layer.neurons); // print neuron values
 
@@ -58,7 +58,7 @@ int main()
 
 	Network network({input, output});
 
-	/*
+	/* Test set
 		1 0 0
 		0 1 0
 
@@ -89,8 +89,6 @@ int main()
 	layer_parser(network.layers[0], network.layers[1]);
 	network.print_network();
 
-
-
 	//////////////////////////////////////
 	// 		   	    Graphics			//
 	//////////////////////////////////////
@@ -119,4 +117,4 @@ int main()
 	*/
 	return 0;
 }
-// ssssssssssssssssssssssssssssssssssssssssssssssss
+// sssssssssssssssssssssssssssssssssssssssssssssssss
