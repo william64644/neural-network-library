@@ -1,19 +1,19 @@
 # Homemamde Neural Network
-### slowly but surely developing a neural network framework
+### Slowly but surely, developing a neural network framework
 
-## The Layer struct:
-In this project, layers have a slightly different meaning, Layer is a class that has a vector for the values of its neuron and an matrix for the weights, whereas usually a layer refers exclusively to neurons.
+## Layer struct:
+In this project, layers have a slightly different meaning. Layer is a struct with a vector for the values of its neurons and a matrix for the weights, whereas usually, a layer refers exclusively to neurons.
 
-It's constructor requires the desired lenght for the layer and the lenght of the next layer(0 for output layer), you may also give it a name for visualization purposes
+Its constructor requires the desired length for the layer and the length of the next layer(0 for the output layer); you may also give it a name for visualization purposes
 
 	Layer(unsigned int size, unsigned int next_layer_size, string name = "Layer")
-## Main network relatd functions:
+## Main network-related functions:
 
 	void layer_parser(Layer &A_layer, Layer &B_layer)
-Gets the values from the neurons array and the weights matrix from A_layer class, calculate everything and inset the results in the B_layer neurons, can't be easyer than that
+Gets the values from the neurons array and the weights matrix from the A_layer struct, then calculates everything and inserts the results in the B_layer neurons
 
 	void matrix_randomizer(vector<vector<double>> &data)
-Set all values in a matrix to a random double betwenn 0.0 and 1.0
+Set all values in a matrix to a random double between 0.0 and 1.0
 
 	void reset_matrix(vector<vector<double>> &matrix)
 Set all values in a matrix to 0
@@ -21,7 +21,7 @@ Set all values in a matrix to 0
 	void reset_vector(vector<double> &vec)
 Set all values in a vector to 0
 	
-## File handeling functions:
+## File handling functions:
 
 	vector<string> read_file(string file_name)
 Get data from a file in the form of a vector of strings, where each line in the file becomes a string
@@ -33,7 +33,7 @@ Get a vector of strings and write it to a file
 Get the matrix of floats directly from a file
 	
 	void repack(vector<vector<double>> data, string output_file)
-Write a matrix of floats to a file, don't worry about formating
+Write a matrix of floats to a file
   
 ## Utilities functions:
   
@@ -41,13 +41,13 @@ Write a matrix of floats to a file, don't worry about formating
 Print a vector of strings
   
 	void print_data(vector<double> vec)
-Print a vector of floats, it's largest value will be printed in a blue color
+Print a vector of floats. The largest value will be printed in a blue color
   
 	vector<string> split(string str, char delimiter)
-Convert a string with words and spaces to a vector with each word, you may be able to use the optional delimiter witch has the default value of spaceBar, but i didn't tested it because who tf would need to do this
+Convert a string with words and spaces to a vector with each word, you may be able to use the optional delimiter, which has the default value of spaceBar
 
 	vector<string> split(string str, char delimiter = ' ')
-Convert a phrase with spaces to a vector of it's corresponding words, very simillar to explode() from PHP
+Converts a phrase with spaces to a vector of its corresponding words, which is very similar to explode() from PHP
 
 	vector<double> multiply_scalar_by_vector(vector<double> vec, double scalar)
 Multiply all values in a vector by the given number
@@ -65,4 +65,4 @@ Get the average of the values in a vector
 compare two vectors and return the total difference between them
 
 	bool is_largest(vector<double> vec, unsigned int indice)
-verifies if and indice corresponds to the largest value in a vector
+verifies if and indices correspond to the largest value in a vector
