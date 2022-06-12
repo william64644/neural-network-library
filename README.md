@@ -1,4 +1,4 @@
-# Homemamde Neural Network
+# Homemamde Neural Network Framework
 ### Slowly but surely, developing a neural network framework
 
 ## Layer struct:
