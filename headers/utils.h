@@ -30,26 +30,6 @@ vector<string> split(string str, char delimiter = ' ')
     return words;
 }
 
-vector<double> multiply_vector_by_matrix(vector<double> vec, vector<vector<double>> matrix)
-{
-    if (vec.size() != matrix[0].size())
-    {
-        cout << "Error: vector size does not match matrix size\n";
-        return vec;
-    }
-    vector<double> result;
-    for (unsigned int i = 0; i < matrix.size(); i++)
-    {
-        double sum = 0;
-        for (unsigned int j = 0; j < vec.size(); j++)
-        {
-            sum += vec[j] * matrix[i][j];
-        }
-        result.push_back(sum);
-    }
-    return result;
-}
-
 vector<double> multiply_scalar_by_vector(vector<double> vec, double scalar)
 {
     vector<double> result;
@@ -110,14 +90,24 @@ double absolute_difference(double test_set[], vector<double> values)
 
 bool is_largest(vector<double> vec, unsigned int indice)
 {
-	if (vec[indice] == *max_element(vec.begin(), vec.end())) {return true;} else {return false;}
+    if (vec[indice] == *max_element(vec.begin(), vec.end()))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void print_data(vector<double> vec)
 {
     for (unsigned int i = 0; i < vec.size(); i++)
     {
-    	if (is_largest(vec, i)) {cout << BLUE;}
+        if (is_largest(vec, i))
+        {
+            cout << BLUE;
+        }
         cout << vec[i] << ' ';
         cout << RESET;
     }

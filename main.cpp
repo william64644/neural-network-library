@@ -11,6 +11,49 @@
 
 using namespace std;
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+void print_layer_data(Layer &layer)
+{
+	// cout << "================================\n";
+	cout << '\t' << layer.name << " Neurons:" << '\n';
+	print_data(layer.neurons); // print neuron values
+
+	if (layer.weights[0].size() > 0) // only print weights if there are any
+	{
+		cout << '\t' << layer.name << " Weights:" << '\n';
+		print_matrix(layer.weights);
+	}
+	else
+	{
+		cout << '\t' << layer.name << " Weights: None" << '\n';
+	}
+}
+
+struct Network
+{
+	vector<Layer> layers;
+
+	Network(vector<Layer> layers)
+	{
+		this->layers = layers;
+	}
+
+	void print_network()
+	{
+		cout << "================================\n";
+		for (unsigned int i = 0; i < layers.size(); i++)
+		{
+			print_layer_data(layers[i]);
+		}
+		cout << "================================\n";
+	}
+};
+
+>>>>>>> c2beff72b7864f8cc253d9185cd7ea04c79eb40b
+>>>>>>> Stashed changes
 int main()
 {
 
@@ -21,7 +64,7 @@ int main()
 
 	Network network({input, output});
 
-	/*
+	/* Test set
 		1 0 0
 		0 1 0
 
@@ -52,8 +95,6 @@ int main()
 	layer_parser(network.layers[0], network.layers[1]);
 	network.print_network();
 
-
-
 	//////////////////////////////////////
 	// 		   	    Graphics			//
 	//////////////////////////////////////
@@ -82,4 +123,4 @@ int main()
 	*/
 	return 0;
 }
-// ssssssssssssssssssssssssssssssssssssssssssssssss
+// sssssssssssssssssssssssssssssssssssssssssssssssss
