@@ -13,7 +13,7 @@ using namespace std;
 
 void print_layer_data(Layer &layer)
 {
-	//cout << "================================\n";
+	// cout << "================================\n";
 	cout << '\t' << layer.name << " Neurons:" << '\n';
 	print_data(layer.neurons); // print neuron values
 
@@ -117,4 +117,4 @@ int main()
 	*/
 	return 0;
 }
-// sssssssssssssssssssssssssssssssssssssssssssssssss
+// ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
