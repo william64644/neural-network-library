@@ -7,6 +7,19 @@
 
 using namespace std;
 
+struct Layer // give it the size of the layer and the size of the next layer (0 for the output layer)
+{
+    vector<double> neurons;
+    vector<vector<double>> weights;
+    string name;
+    Layer(unsigned int size, unsigned int next_layer_size, string name = "Layer")
+    {
+        neurons = vector<double>(size);
+        weights = vector<vector<double>>(size, vector<double>(next_layer_size));
+        this->name = name;
+    }
+};
+
 void matrix_randomizer(vector<vector<double>> &data)
 {
     srand(std::chrono::system_clock::now().time_since_epoch().count());
@@ -50,53 +63,3 @@ void layer_parser(Layer &A_layer, Layer &B_layer)
 		B_layer.neurons[k] = tanh(B_layer.neurons[k]);
 	}
 }
-
-void print_layer_data(Layer &layer)
-{
-	//cout << "================================\n";
-	cout << '\t' << layer.name << " Neurons:" << '\n';
-	print_data(layer.neurons); // print neuron values
-
-	if (layer.weights[0].size() > 0) // only print weights if there are any
-	{
-		cout << '\t' << layer.name << " Weights:" << '\n';
-		print_matrix(layer.weights);
-	}
-	else
-	{
-		cout << '\t' << layer.name << " Weights: None" << '\n';
-	}
-}
-
-struct Layer // give it the size of the layer and the size of the next layer (0 for the output layer)
-{
-    vector<double> neurons;
-    vector<vector<double>> weights;
-    string name;
-    Layer(unsigned int size, unsigned int next_layer_size, string name = "Layer")
-    {
-        neurons = vector<double>(size);
-        weights = vector<vector<double>>(size, vector<double>(next_layer_size));
-        this->name = name;
-    }
-};
-
-struct Network
-{
-	vector<Layer> layers;
-
-	Network(vector<Layer> layers)
-	{
-		this->layers = layers;
-	}
-
-	void print_network()
-	{
-		cout << "================================\n";
-		for (unsigned int i = 0; i < layers.size(); i++)
-		{
-			print_layer_data(layers[i]);
-		}
-		cout << "================================\n";
-	}
-};
