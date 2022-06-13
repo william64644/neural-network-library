@@ -11,6 +11,10 @@
 
 using namespace std;
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
 void print_layer_data(Layer &layer)
 {
 	// cout << "================================\n";
@@ -48,6 +52,8 @@ struct Network
 	}
 };
 
+>>>>>>> c2beff72b7864f8cc253d9185cd7ea04c79eb40b
+>>>>>>> Stashed changes
 int main()
 {
 
