@@ -62,3 +62,22 @@ void layer_parser(Layer &A_layer, Layer &B_layer)
         B_layer.neurons[k] = tanh(B_layer.neurons[k]);
     }
 }
+
+void print_data(vector<double> vec);
+void print_matrix(vector<vector<double>> matrix);
+void print_layer_data(Layer &layer)
+{
+    // cout << "================================\n";
+    cout << '\t' << layer.name << " Neurons:" << '\n';
+    print_data(layer.neurons); // print neuron values
+
+    if (layer.weights[0].size() > 0) // only print weights if there are any
+    {
+        cout << '\t' << layer.name << " Weights:" << '\n';
+        print_matrix(layer.weights);
+    }
+    else
+    {
+        cout << '\t' << layer.name << " Weights: None" << '\n';
+    }
+}

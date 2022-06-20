@@ -11,23 +11,6 @@
 
 using namespace std;
 
-void print_layer_data(Layer &layer)
-{
-	// cout << "================================\n";
-	cout << '\t' << layer.name << " Neurons:" << '\n';
-	print_data(layer.neurons); // print neuron values
-
-	if (layer.weights[0].size() > 0) // only print weights if there are any
-	{
-		cout << '\t' << layer.name << " Weights:" << '\n';
-		print_matrix(layer.weights);
-	}
-	else
-	{
-		cout << '\t' << layer.name << " Weights: None" << '\n';
-	}
-}
-
 struct Network
 {
 	vector<Layer> layers;
@@ -46,6 +29,14 @@ struct Network
 		}
 		cout << "================================\n";
 	}
+
+	void parse_network()
+	{
+		for (unsigned int i = 0; i < layers.size() - 1; i++)
+		{
+			layer_parser(layers[i], layers[i + 1]);
+		}
+	}
 };
 
 int main()
@@ -53,8 +44,8 @@ int main()
 
 	double test_set[3][3] = {{0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}, {1.0, 0.0, 0.0}};
 
-	Layer input(3, 4, "Input");
-	Layer output(4, 0, "Output");
+	Layer input(3, 3, "Input");
+	Layer output(3, 0, "Output");
 
 	Network network({input, output});
 
@@ -74,19 +65,19 @@ int main()
 	// rock paper scissors
 
 	network.layers[0].neurons = {1.0, 0.0, 0.0};
-	layer_parser(network.layers[0], network.layers[1]);
+	network.parse_network();
 	network.print_network();
 
 	cout << "\n\n\n\n";
 
 	network.layers[0].neurons = {0.0, 1.0, 0.0};
-	layer_parser(network.layers[0], network.layers[1]);
+	network.parse_network();
 	network.print_network();
 
 	cout << "\n\n\n\n";
 
 	network.layers[0].neurons = {0.0, 0.0, 1.0};
-	layer_parser(network.layers[0], network.layers[1]);
+	network.parse_network();
 	network.print_network();
 
 	//////////////////////////////////////
@@ -117,4 +108,4 @@ int main()
 	*/
 	return 0;
 }
-// ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+// sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
