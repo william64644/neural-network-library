@@ -3,18 +3,22 @@
 #include <vector>
 #include <sstream>
 #include <chrono>
+#include "random_bool.h"
 
 using namespace std;
 
-void variate(vector<vector<double>> &data, int max_variation = 100)
+double variate(double num, int max_variation = 10)
 {
-    srand(std::chrono::system_clock::now().time_since_epoch().count());
-    for (long unsigned int i = 0; i < data.size(); i++)
-    {
-        for (long unsigned int j = 0; j < data[i].size(); j++)
-        {
-            data[i][j] += (rand() % (max_variation * 2 + 1)) + max_variation;
-            if (data[i][j] < 0) data[i][j] = 0;
-        }
-    }
+	srand(std::chrono::system_clock::now().time_since_epoch().count());
+	double absolute_variation = rand() % max_variation;
+	
+	absolute_variation = absolute_variation / 100;
+	
+	if (random_bool())
+	{
+		return num + num * absolute_variation;
+	} else {
+		return num - num * absolute_variation;
+	}
+
 }

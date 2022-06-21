@@ -29,6 +29,7 @@ struct Network
         {
             print_layer_data(layers[i]);
         }
+        cout << "Error: " << error << '\n';
         cout << "================================\n";
     }
 
@@ -38,7 +39,7 @@ struct Network
         {
             layer_parser(layers[i], layers[i + 1]);
         }
-        if (expected_output.size() > 0)
+        if (expected_output.size() > 0) // calculates the error if the expected output is defined
         {
             error = error = absolute_difference(layers.back().neurons, expected_output);
         }
