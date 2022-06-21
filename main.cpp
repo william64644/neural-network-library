@@ -4,108 +4,43 @@
 #include <string>
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
-#include "headers/file_handler.h"
-#include "headers/utils.h"
-#include "headers/core_neural.h"
-#include "headers/core_graphics.h"
+#include <sys/stat.h>
+
+#include "headers/Layer.h"
+#include "headers/print_layer_data.h"
+#include "headers/layer_parser.h"
+#include "headers/matrix_randomizer.h"
+#include "headers/Network.h"
+#include "headers/vector_packager.h"
+#include "headers/absolute_difference.h"
+#include "headers/double_packager.h"
+#include "headers/repack_network.h"
 
 using namespace std;
-
-struct Network
-{
-	vector<Layer> layers;
-
-	Network(vector<Layer> layers)
-	{
-		this->layers = layers;
-	}
-
-	void print_network()
-	{
-		cout << "================================\n";
-		for (unsigned int i = 0; i < layers.size(); i++)
-		{
-			print_layer_data(layers[i]);
-		}
-		cout << "================================\n";
-	}
-
-	void parse_network()
-	{
-		for (unsigned int i = 0; i < layers.size() - 1; i++)
-		{
-			layer_parser(layers[i], layers[i + 1]);
-		}
-	}
-};
+// sss
 
 int main()
 {
+	const double in_out_settings[3][2][3] = {{{1, 0, 0}, {0, 1, 0}}, {{0, 1, 0}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}};
 
-	double test_set[3][3] = {{0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}, {1.0, 0.0, 0.0}};
+	const string input_options[3] = {"Rock", "Paper", "Scissors"};
 
-	Layer input(3, 3, "Input");
-	Layer output(3, 0, "Output");
-
+	// setup
+	Layer input(3, 3, "Input", {"Input_Rock", "Input_Paper", "Input_Scissors"});
+	Layer output(3, 0, "Output", {"Output_Rock", "Output_Paper", "Output_Scissors"});
 	Network network({input, output});
 
-	/* Test set
-		1 0 0
-		0 1 0
+	// config
+	network.layers[0].neurons = {1, 0, 0};
+	network.expected_output = {0, 1, 0};
 
-		0 1 0
-		0 0 1
-
-		0 0 1
-		1 0 0
-	*/
-
+	// calculate
 	matrix_randomizer(network.layers[0].weights);
-
-	// rock paper scissors
-
-	network.layers[0].neurons = {1.0, 0.0, 0.0};
 	network.parse_network();
-	network.print_network();
 
-	cout << "\n\n\n\n";
+	// write
+	repack_network(network, "./networks/");
 
-	network.layers[0].neurons = {0.0, 1.0, 0.0};
-	network.parse_network();
-	network.print_network();
-
-	cout << "\n\n\n\n";
-
-	network.layers[0].neurons = {0.0, 0.0, 1.0};
-	network.parse_network();
-	network.print_network();
-
-	//////////////////////////////////////
-	// 		   	    Graphics			//
-	//////////////////////////////////////
-	/*
-		sf::RenderWindow window(sf::VideoMode(900, 500), "My window");
-		window.setFramerateLimit(60);
-
-		// run the program as long as the window is open
-		while (window.isOpen())
-		{
-			// check all the window's events that were triggered since the last iteration of the loopp
-			sf::Event event;
-			while (window.pollEvent(event))
-			{
-				// "close requested" event: we close the window
-				if (event.type == sf::Event::Closed)
-					window.close();
-			}
-
-			window.clear(sf::Color::Black);
-
-			// draw everything here...
-
-			window.display();
-		}
-	*/
 	return 0;
 }
-// sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+// sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss

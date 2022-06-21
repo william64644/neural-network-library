@@ -8,7 +8,7 @@ chmod +x compiled
 
 current_hash=`sha1sum main.cpp`
 
-previous_hash=`cat previous_hash`
+previous_hash=`cat /tmp/previous_hash`
 
 if [[ "$current_hash" == "$previous_hash" ]]; then
     ./compiled
@@ -17,5 +17,5 @@ else
 
     g++ main.o -o compiled -lsfml-graphics -lsfml-window -lsfml-system
     
-    echo "$current_hash" > previous_hash
+    echo "$current_hash" > /tmp/previous_hash
 fi
