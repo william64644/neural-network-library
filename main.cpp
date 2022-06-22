@@ -19,6 +19,7 @@
 #include "headers/variate.h"
 #include "headers/variate_matrix.h"
 #include "headers/print_matrix.h"
+#include "headers/print_data.h"
 //ssssssss
 using namespace std;
 
@@ -86,6 +87,11 @@ void test_error()
 	cout << "Best network path: " << best_network_path << endl;
 }
 
+void test_network(Network &network, vector<vector<vector<double>>> in_out_settings)
+{
+
+}
+
 int main()
 {
 	vector<vector<vector<double>>> in_out_settings = {{{1, 0, 0}, {0, 1, 0}}, {{0, 1, 0}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}};
@@ -93,25 +99,33 @@ int main()
 	const string input_names[3] = {"Rock", "Paper", "Scissors"};
 
 	// setup
-	Layer input(3, 4, "Input", {"Input_Rock", "Input_Paper", "Input_Scissors"});
-	Layer hidden(4, 3, "Hidden", {"Hidden_1", "Hidden_2", "Hidden_3", "Hidden_4"});
+	Layer input(3, 3, "Input", {"Input_Rock", "Input_Paper", "Input_Scissors"});
 	Layer output(3, 0, "Output", {"Output_Rock", "Output_Paper", "Output_Scissors"});
 	
-	input.neurons = in_out_settings[0][0];
+	Network network({input, output});
 	
-	matrix_randomizer(input.weights);
-	matrix_randomizer(hidden.weights);
-	
-	Network network({input, hidden, output});
-	
+	// configuration
+	network.layers[0].neurons = in_out_settings[0][0];
 	network.expected_output = in_out_settings[0][1];
 	
-	// test network
-	network.parse_network();
+	vector<vector<double>> best_weights;
 	
-	network.print_network();
+	// run
+	int smallest_error = 3;
 	
-	
+	for (unsigned int i = 0; i < 100; i++)
+	{
+		matrix_randomizer(network.layers[0].weights);
+		network.parse_network();
+		
+		if (network.error < smallest_error)
+		{
+			smallest_error = network.error;
+			best_weights = network.layers[0].weights;
+		}
+	}
+
+	print_matrix(best_weights);
 
 
 	return 0;
