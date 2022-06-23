@@ -1,9 +1,11 @@
 #pragma once
 
 #include <cmath>
+#include <thread>
 
 #include "Layer.h"
 #include "reset_vector.h"
+#include "join_threads.h"
 
 using namespace std;
 

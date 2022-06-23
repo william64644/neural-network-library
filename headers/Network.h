@@ -20,6 +20,7 @@ struct Network
     {
         this->layers = layers;
         this->expected_output = expected_output;
+        error = expected_output.size();
     }
 
     void print_network()
@@ -35,13 +36,14 @@ struct Network
 
     void parse_network()
     {
+        error = 0;
         for (unsigned int i = 0; i < layers.size() - 1; i++)
         {
             layer_parser(layers[i], layers[i + 1]);
         }
         if (expected_output.size() > 0) // calculates the error if the expected output is defined
         {
-            error = error = absolute_difference(layers.back().neurons, expected_output);
+            error += absolute_difference(layers.back().neurons, expected_output);
         }
     }
 };
