@@ -29,7 +29,7 @@ struct Network
         {
             print_layer_data(layers[i]);
         }
-        cout << "Error: " << error << '\n';
+        cout << "Cache Error: " << error << '\n';
         cout << "================================\n";
     }
 

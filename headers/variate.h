@@ -3,6 +3,8 @@
 #include <vector>
 #include <sstream>
 #include <chrono>
+#include <cmath>
+
 #include "random_bool.h"
 
 using namespace std;
@@ -16,9 +18,9 @@ double variate(double num, int max_variation = 10)
 	
 	if (random_bool())
 	{
-		return num + num * absolute_variation;
+		return tanh(num + num * absolute_variation);
 	} else {
-		return num - num * absolute_variation;
+		return tanh(num - num * absolute_variation);
 	}
 
 }
