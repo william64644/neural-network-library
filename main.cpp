@@ -47,7 +47,7 @@ void variate_network(Network &network, int variation)
 	}
 }
 
-Network train(Network network, int variation, vector<vector<vector<double>>> in_out_settings, int iterations = 100000)
+Network train(Network &network, int variation, vector<vector<vector<double>>> in_out_settings, int iterations = 10000)
 {
 	Network best_network = network;
 	Network cache_network = network;
@@ -182,6 +182,7 @@ int main()
 		 << test_network(network, in_out_settings) << '\n'
 		 << '\n';
 
+	repack_network(network, "data/trained_");
 	while (true)
 	{
 		vector<double> game_input = get_input(3);
@@ -195,4 +196,4 @@ int main()
 
 	return 0;
 }
-// ssssssssssssssssss
+// ssssssssssssssssssssssssss

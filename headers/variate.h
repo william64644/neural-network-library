@@ -18,10 +18,10 @@ double variate(double num, int max_variation = 10)
 
 	if (random_bool())
 	{
-		return tanh(num + num * absolute_variation);
+		return round((tanh(num + num * absolute_variation)) * 10000) / 10000;
 	}
 	else
 	{
-		return tanh(num - num * absolute_variation);
+		return round((tanh(num - num * absolute_variation)) * 10000) / 10000;
 	}
 }
