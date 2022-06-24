@@ -36,7 +36,7 @@ struct Network
 
     void parse_network()
     {
-        error = 0;
+        error = 404;
         for (unsigned int i = 0; i < layers.size() - 1; i++)
         {
             layer_parser(layers[i], layers[i + 1]);

@@ -103,74 +103,22 @@ vector<double> get_input(int numbers_ammount)
 // change this to get_variation_scope()
 double get_range(int input)
 {
+	// this equation was optimized for 20 divisions
 	return 15 * pow(input, 3);
 }
 
-Network funneled_train(Network &network, vector<vector<vector<double>>> &in_out_settings)
+Network funneled_train(Network &network, vector<vector<vector<double>>> &in_out_settings, int divisions = 20)
 {
 	Network funneled_network = network;
 	
 	cout << "traingn network ..." << '\n';
-	cout << "phase 1 - ";
-	funneled_network = train(funneled_network, get_range(20), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 2 - ";
-	funneled_network = train(funneled_network, get_range(19), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 3 - ";
-	funneled_network = train(funneled_network, get_range(18), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 4 - ";
-	funneled_network = train(funneled_network, get_range(17), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 5 - ";
-	funneled_network = train(funneled_network, get_range(16), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 6 - ";
-	funneled_network = train(funneled_network, get_range(15), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 7 - ";
-	funneled_network = train(funneled_network, get_range(14), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 8 - ";
-	funneled_network = train(funneled_network, get_range(13), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 9 - ";
-	funneled_network = train(funneled_network, get_range(12), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 5 - ";
-	funneled_network = train(funneled_network, get_range(11), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 11 - ";
-	funneled_network = train(funneled_network, get_range(10), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 12 - ";
-	funneled_network = train(funneled_network, get_range(9), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 13 - ";
-	funneled_network = train(funneled_network, get_range(8), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 14 - ";
-	funneled_network = train(funneled_network, get_range(7), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 15 - ";
-	funneled_network = train(funneled_network, get_range(6), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 16 - ";
-	funneled_network = train(funneled_network, get_range(5), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 17 - ";
-	funneled_network = train(funneled_network, get_range(4), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 18 - ";
-	funneled_network = train(funneled_network, get_range(3), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 19 - ";
-	funneled_network = train(funneled_network, get_range(2), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
-	cout << "phase 20 - ";
-	funneled_network = train(funneled_network, get_range(1), in_out_settings);
-	cout << "error: " << funneled_network.error << '\n';
+	
+	for (unsigned int i = 0; i < divisions; i++)
+	{
+	cout << "phase " << i + 1 << " - ";
+	funneled_network = train(funneled_network, get_range(divisions - i), in_out_settings);
+	cout << "Error: " << funneled_network.error << '\n';
+	}
 	
 	return funneled_network;
 }
@@ -182,13 +130,17 @@ int main()
 	vector<vector<vector<double>>> in_out_settings = {{{1, 0, 0}, {0, 1, 0}}, {{0, 1, 0}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}};
 
 	// setup
-	Layer input(3, 3, "Input");
+	Layer input(3, 4, "Input");
+	Layer hidden1(4, 4, "Hidden1");
+	Layer hidden2(4, 3, "Hidden2");
 	Layer output(3, 0, "Output");
 
-	Network network({input, output});
+	Network network({input, hidden1, hidden2, output});
 
 	// configure
 	matrix_randomizer(network.layers[0].weights);
+	matrix_randomizer(network.layers[1].weights);
+	matrix_randomizer(network.layers[2].weights);
 	network.parse_network();
 	
 	// train
