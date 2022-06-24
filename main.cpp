@@ -29,7 +29,6 @@ double test_network(Network network, vector<vector<vector<double>>> &in_out_sett
 	double total_error;
 	for (unsigned int test_set = 0; test_set < in_out_settings.size(); test_set++)
 	{
-
 		network.layers[0].neurons = in_out_settings[test_set][0];
 		network.expected_output = in_out_settings[test_set][1];
 
@@ -54,14 +53,16 @@ Network train(Network network, int variation, vector<vector<vector<double>>> in_
 	Network cache_network = network;
 
 	double best_error;
-	if (network.error != 0)
+
+	if (network.error == 0)
 	{
-		best_error = network.error;
+		best_error = network.layers.back().neurons.size() + network.layers[0].neurons.size();
 	}
 	else
 	{
-		best_error = network.layers.back().neurons.size();
+		best_error = network.error;
 	}
+
 	double current_error = best_error;
 
 	for (unsigned int iteration = 0; iteration < iterations; iteration++)
@@ -105,51 +106,81 @@ int main()
 	const string input_names[3] = {"Rock", "Paper", "Scissors"};
 
 	// setup
-	Layer input(3, 4, "Input", {"Input_Rock", "Input_Paper", "Input_Scissors"});
-	Layer hidden(4, 3, "Hidden", {"Hidden1", "Hidden2", "Hidden3", "Hidden4"});
-	Layer output(3, 0, "Output", {"Output_Rock", "Output_Paper", "Output_Scissors"});
+	Layer input(3, 3, "Input");
+	Layer output(3, 0, "Output");
 
-	Network network({input, hidden, output});
+	Network network({input, output});
 
 	// configure
 	matrix_randomizer(network.layers[0].weights);
-	matrix_randomizer(network.layers[1].weights);
-
+	network.parse_network();
 	// train
 	cout << "traingn network ..." << '\n';
 	cout << "phase 1 - ";
-	network = train(network, 100000, in_out_settings);
+	network = train(network, 256000, in_out_settings);
 	cout << "error: " << network.error << '\n';
 	cout << "phase 2 - ";
-	network = train(network, 10000, in_out_settings);
+	network = train(network, 256000, in_out_settings);
 	cout << "error: " << network.error << '\n';
 	cout << "phase 3 - ";
-	network = train(network, 1000, in_out_settings);
+	network = train(network, 128000, in_out_settings);
 	cout << "error: " << network.error << '\n';
 	cout << "phase 4 - ";
-	network = train(network, 100, in_out_settings);
+	network = train(network, 128000, in_out_settings);
 	cout << "error: " << network.error << '\n';
 	cout << "phase 5 - ";
-	network = train(network, 100, in_out_settings);
+	network = train(network, 64000, in_out_settings);
 	cout << "error: " << network.error << '\n';
 	cout << "phase 6 - ";
-	network = train(network, 100, in_out_settings);
+	network = train(network, 64000, in_out_settings);
 	cout << "error: " << network.error << '\n';
 	cout << "phase 7 - ";
-	network = train(network, 100, in_out_settings);
+	network = train(network, 32000, in_out_settings);
 	cout << "error: " << network.error << '\n';
 	cout << "phase 8 - ";
-	network = train(network, 100, in_out_settings);
+	network = train(network, 32000, in_out_settings);
 	cout << "error: " << network.error << '\n';
 	cout << "phase 9 - ";
+	network = train(network, 16000, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 5 - ";
+	network = train(network, 16000, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 11 - ";
+	network = train(network, 800, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 12 - ";
+	network = train(network, 800, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 13 - ";
+	network = train(network, 400, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 14 - ";
+	network = train(network, 400, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 15 - ";
+	network = train(network, 200, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 16 - ";
+	network = train(network, 200, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 17 - ";
 	network = train(network, 100, in_out_settings);
 	cout << "error: " << network.error << '\n';
-	cout << "phase 10 - ";
+	cout << "phase 18 - ";
 	network = train(network, 100, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 19 - ";
+	network = train(network, 50, in_out_settings);
+	cout << "error: " << network.error << '\n';
+	cout << "phase 20 - ";
+	network = train(network, 50, in_out_settings);
 	cout << "error: " << network.error << '\n';
 
 	// runtime
-	cout << "Training phase complete, the network error is " << test_network(network, in_out_settings) << '\n';
+	cout << "Training phase complete, the network error is "
+		 << test_network(network, in_out_settings) << '\n'
+		 << '\n';
 
 	while (true)
 	{
@@ -164,4 +195,4 @@ int main()
 
 	return 0;
 }
-// ssss
+// ssssssssssssssssss
