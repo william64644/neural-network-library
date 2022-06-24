@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cmath>
-#include <thread>
 
 #include "Layer.h"
 #include "reset_vector.h"
@@ -19,8 +18,10 @@ void layer_parser(Layer &A_layer, Layer &B_layer)
             B_layer.neurons[j] += A_layer.neurons[i] * A_layer.weights[i][j];
         }
     }
+    /* removing this made the training 100 times more effective but idk if it will cause issues
     for (unsigned int k = 0; k < B_layer.neurons.size(); k++)
     {
         B_layer.neurons[k] = tanh(B_layer.neurons[k]);
     }
+    */
 }
