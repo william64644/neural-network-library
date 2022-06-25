@@ -40,7 +40,7 @@ Write a matrix of doubles to a file
 	void print_vector(vector<string> vec)
 Print a vector of strings
   
-	void print_data(vector<double> vec)
+	void print_double_vector(vector<double> vec)
 Print a vector of doubles. The largest value will be printed in a blue color
   
 	vector<string> split(string str, char delimiter)

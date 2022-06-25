@@ -24,6 +24,6 @@ double absolute_difference(double test_set[], vector<double> values);
 
 bool is_largest(vector<double> vec, unsigned int indice);
 
-void print_data(vector<double> vec);
+void print_double_vector(vector<double> vec);
 
 #include "src/utils.cpp"

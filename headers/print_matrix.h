@@ -9,7 +9,7 @@ void print_matrix(vector<vector<double>> matrix)
 {
     for (unsigned int i = 0; i < matrix.size(); i++)
     {
-        print_data(matrix[i]);
+        print_double_vector(matrix[i]);
     }
     cout << '\n';
 }

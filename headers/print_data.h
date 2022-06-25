@@ -1,13 +1,14 @@
 #pragma once
 
 #include <vector>
+#include <algorithm>
 
 #include "is_largest.h"
 #include "colors.h"
 
 using namespace std;
 
-void print_data(vector<double> vec)
+void print_double_vector(vector<double> vec)
 {
     for (unsigned int i = 0; i < vec.size(); i++)
     {
