@@ -19,6 +19,7 @@
 #include "headers/print_matrix.h"
 #include "headers/print_data.h"
 #include "headers/split.h"
+#include "headers/dpkg.h"
 
 // ssssssssssss
 
@@ -98,23 +99,23 @@ vector<double> ask_network_input_from_user(int numbers_ammount)
 	return nums;
 }
 
-double get_variation_scope(int input)
+double get_variation_scope(int current_training_phase)
 {
 	// this equation was optimized for 20 training phases
-	return 15 * pow(input, 3);
+	return 15 * pow(current_training_phase, 3);
 }
 
 Network get_funneled_trained_network(Network &network, vector<vector<vector<double>>> &in_out_settings, int phases = 20)
 {
 	cout << "traingn network ..." << '\n';
-	
+
 	for (unsigned int i = 0; i < phases; i++)
 	{
-	cout << "phase " << i + 1 << " - ";
-	train_network(network, get_variation_scope(phases - i), in_out_settings);
-	cout << "Error: " << network.error << '\n';
+		cout << "phase " << i + 1 << " - ";
+		train_network(network, get_variation_scope(phases - i), in_out_settings);
+		cout << "Error: " << network.error << '\n';
 	}
-	
+
 	return network;
 }
 
@@ -131,13 +132,14 @@ int main()
 	// configure
 	matrix_randomizer(network.layers[0].weights);
 	network.parse_network();
-	
+
 	// train
 	Network trained_network = get_funneled_trained_network(network, in_out_settings);
 
 	// runtime
 	cout << "Training phase complete, the network error is "
-		 << get_network_total_error(trained_network, in_out_settings) << '\n' << '\n';
+		 << get_network_total_error(trained_network, in_out_settings) << '\n'
+		 << '\n';
 
 	repack_network(trained_network, "data/trained_");
 	while (true)
@@ -154,4 +156,3 @@ int main()
 	return 0;
 }
 // ssssssss
-
