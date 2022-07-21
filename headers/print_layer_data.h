@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Layer.h"
-#include "print_data.h"
+#include "print_vector.h"
 #include "print_matrix.h"
 
 using namespace std;
@@ -12,7 +12,7 @@ void print_layer_data(Layer &layer)
 {
     // cout << "================================\n";
     cout << '\t' << layer.name << " Neurons:" << '\n';
-    print_double_vector(layer.neurons); // print neuron values
+    print_vector(layer.neurons); // print neuron values
 
     if (layer.weights[0].size() > 0) // only print weights if there are any
     {

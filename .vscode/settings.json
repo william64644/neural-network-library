@@ -72,6 +72,13 @@
     "variant": "cpp",
     "semaphore": "cpp",
     "__nullptr": "cpp",
-    "__split_buffer": "cpp"
+    "__split_buffer": "cpp",
+    "locale": "cpp",
+    "__hash_table": "cpp",
+    "__tree": "cpp",
+    "queue": "cpp",
+    "stack": "cpp",
+    "future": "cpp",
+    "shared_mutex": "cpp"
   }
 }
