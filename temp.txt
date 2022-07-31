@@ -99,7 +99,7 @@ int main()
 	Network net({input, dummy_output});
 	matrix_randomizer(net.layers[0].weights);
 
-	net.parse_network();
+	net.run_network();
 
 	net.print_network();
 

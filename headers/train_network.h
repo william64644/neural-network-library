@@ -24,7 +24,7 @@ void train_network(Network &network, int max_variation, vector<vector<vector<dou
 	for (unsigned int iteration = 0; iteration < iterations; iteration++)
 	{
 		ramdomly_variate_network_weights(cache_network, max_variation);
-		cache_network.parse_network();
+		cache_network.run_network();
 		current_error = get_network_total_error(cache_network, in_out_settings);
 
 		if (current_error < best_error)

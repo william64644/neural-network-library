@@ -26,7 +26,7 @@
 #include "train_network.h"
 #include "write_file.h"
 #include "repack.h"
-#include "layer_parser.h"
+#include "layer_runner.h"
 #include "matrix_randomizer.h"
 #include "Layer.h"
 #include "random_bool.h"

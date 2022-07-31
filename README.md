@@ -9,7 +9,7 @@ Its constructor requires the desired length for the layer and the length of the 
 	Layer(unsigned int size, unsigned int next_layer_size, string name = "Layer")
 ## Main network-related functions:
 
-	void layer_parser(Layer &A_layer, Layer &B_layer)
+	void layer_runr(Layer &A_layer, Layer &B_layer)
 Gets the values from the neurons array and the weights matrix from the A_layer struct, then calculates everything and inserts the results in the B_layer neurons
 
 	void matrix_randomizer(vector<vector<double>> &data)

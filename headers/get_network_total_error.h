@@ -10,7 +10,7 @@ double get_network_total_error(Network network, vector<vector<vector<double>>> &
 		network.layers[0].neurons = in_out_settings[test_set][0];
 		network.expected_output = in_out_settings[test_set][1];
 
-		network.parse_network();
+		network.run_network();
 
 		total_error += network.error;
 	}

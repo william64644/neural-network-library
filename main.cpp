@@ -9,45 +9,40 @@
 // ssssssssssssssssssssss
 // output.shrink_to_fit();
 
-
-
-
-
-
-
-
-
 using namespace std;
 
 int main()
 {
+	// Create network
+	Layer input(3, 3, "Input", {"Rock", "Paper", "Scisors"});
+	Layer output(3, 0, "Output", {"Rock", "Paper", "Scisors"});
 
-	const string phrase1 = "we carried the cargo one by one";
-	const string phrase2 = "we carry cargo from time to time";
+	Network network({input, output});
 
-	string full_pharese = get_merged_strings({phrase1, phrase2});
-	cout << full_pharese;
+	matrix_randomizer(network.layers[0].weights);
+	
+	vector<vector<vector<double>>> labeled_in_out = {{{0,0,1},{1,0,0}},{{0,1,0},{0,0,1}},{{1,0,0},{0,1,0}}};
 
-	vector<string> phrase_vector = split(full_pharese);
+	// Train
+	const double TRAINING_RATE = 0.01;
+	const double TRAIN_ITERATIONS = 100;
+	for (int train_iteration = 0; train_iteration < TRAIN_ITERATIONS; train_iteration ++)
+	{
+		// Loops through labeled examples from labeled_in_out
+		for (int training_example = 0; training_example < labeled_in_out.size(); training_example ++)
+		{
+			// Set network inputs outputs
+			network.layers[0].neurons = labeled_in_out[training_example][0];
+			network.expected_output = labeled_in_out[training_example][1];
 
-	vector<string> tokens = get_tokenized_strings(full_pharese);
+			// Calculate
+			network.run_network();
 
-	print_vector(get_vectorized_string(tokens, phrase_vector));
-
-
-
-	Layer input(tokens.size(), 4, "Input");
-	Layer dummy_output(4, 0, "Dummy Output");
-
-	input.neurons = get_vectorized_string(tokens, phrase_vector);
-
-	Network net({input, dummy_output});
-	matrix_randomizer(net.layers[0].weights);
-
-	net.parse_network();
-
-	net.print_network();
+			// Print
+			network.print_network();
+		}
+	}
 
 	return 0;
 }
-// ssssssssssss
+// ssssssssssssssss

@@ -5,7 +5,7 @@
 
 #include "Layer.h"
 #include "print_layer_data.h"
-#include "layer_parser.h"
+#include "layer_runner.h"
 #include "absolute_difference.h"
 
 using namespace std;
@@ -34,12 +34,12 @@ struct Network
         cout << "================================\n";
     }
 
-    void parse_network()
+    void run_network()
     {
         error = 404;
         for (unsigned int i = 0; i < layers.size() - 1; i++)
         {
-            layer_parser(layers[i], layers[i + 1]);
+            layer_runner(layers[i], layers[i + 1]);
         }
         if (expected_output.size() > 0) // calculates the error if the expected output is defined
         {
