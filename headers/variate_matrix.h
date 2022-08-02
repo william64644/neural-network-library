@@ -15,7 +15,7 @@ void variate_matrix(vector<vector<double>> &data, int max_variation)
     {
         for (unsigned int j = 0; j < data[i].size(); j++)
         {
-            data[i][j] = variate(data[i][j], max_variation);
+            data[i][j] = tanh(variate(data[i][j], max_variation));
         }
     }
 }

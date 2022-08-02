@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include "reset_vector.h"
 #include "variate.h"
 #include "get_network_total_error.h"

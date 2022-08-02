@@ -10,11 +10,11 @@ void train_network(Network &network, int max_variation, vector<vector<vector<dou
 
 	double best_error;
 
-	if (network.error == 0)
+	if (network.error == 0) // In the case of the first network train
 	{
 		best_error = network.layers.back().neurons.size() + network.layers[0].neurons.size();
 	}
-	else
+	else // In the case of a network that has been traning
 	{
 		best_error = network.error;
 	}
