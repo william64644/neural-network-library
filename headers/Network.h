@@ -20,7 +20,7 @@ struct Network
     {
         this->layers = layers;
         this->expected_output = expected_output;
-        // error = 9999999; // expected_output.size();
+        error = layers.back().neurons.size() + layers[0].neurons.size();
     }
 
     void print_network()
@@ -41,9 +41,7 @@ struct Network
         {
             layer_runner(layers[i], layers[i + 1]);
         }
-        if (expected_output.size() > 0) // calculates the error if the expected output is defined
-        {
-            error = absolute_difference(layers.back().neurons, expected_output);
-        }
+        
+        error = absolute_difference(layers.back().neurons, expected_output);
     }
 };

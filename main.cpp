@@ -23,18 +23,16 @@ int main()
 
 	matrix_randomizer(network.layers[0].weights);
 
-	vector<vector<vector<double>>> labeled_in_out = {
-			{{1,0,0},{0,1,0}},
-			{{0,1,0},{0,0,1}},
-			{{0,0,1},{1,0,0}},
-		};
+	vector<vector<vector<double>>> labeled_in_out = {{{1,0,0},{0,1,0}},{{0,1,0},{0,0,1}},{{0,0,1},{1,0,0}}};
 
 	repack_network(network, "networks/untrained_");
 //
 	//print_vector(labeled_in_out[0][0]);
 	// Train
 	
-	Network trained_network = get_funneled_trained_network(network, labeled_in_out, 2, 40000);
+	//network.run_network();
+	
+	Network trained_network = get_funneled_trained_network(network, labeled_in_out, 20, 40000);
 	
 	repack_network(trained_network, "networks/trained_");
 	
