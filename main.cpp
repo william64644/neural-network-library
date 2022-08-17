@@ -30,7 +30,7 @@ int main()
 	//print_vector(labeled_in_out[0][0]);
 	// Train
 	
-	//network.run_network();
+	//network.run_network();s
 	
 	Network trained_network = get_funneled_trained_network(network, labeled_in_out, 20, 40000);
 	
@@ -50,8 +50,8 @@ int main()
 		trained_network.print_network();
 	}
 	
-	// Runtime
+	// Runtimes
 	
 	return 0;
 }
-// sssssssssssssssssssssssssss
+// sssssssssssssssssssssssssssss
