@@ -7,6 +7,8 @@
 #include "headers/repack_network.h"
 #include "headers/print_matrix.h"
 #include "headers/print_vector.h"
+#include "headers/repack_pgm.h"
+#include "headers/dpkg.h"
 
 // ssssssssssssssssssssss
 // output.shrink_to_fit();
@@ -15,6 +17,7 @@ using namespace std;
 
 int main()
 {
+/*
 	// Create network
 	Layer input(3, 3, "Input", {"Rock", "Paper", "Scissor"});
 	Layer output(3, 0, "Output", {"Rock", "Paper", "Scissor"});
@@ -49,8 +52,13 @@ int main()
 		trained_network.run_network();
 		trained_network.print_network();
 	}
-	
+
 	// Runtimes
+*/	
+
+	vector<vector<double>> double_matrix = dpkg("networks/trained_Input_weights.txt");
+	
+	repack_pgm(double_matrix, "img.pgm");
 	
 	return 0;
 }
