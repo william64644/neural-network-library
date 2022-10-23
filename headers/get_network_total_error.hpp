@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Network.h"
+#include "Network.hpp"
 
 double get_network_total_error(Network network, vector<vector<vector<double>>> &in_out_settings)
 {

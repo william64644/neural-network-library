@@ -5,7 +5,7 @@
 #include <chrono>
 #include <cmath>
 
-#include "random_bool.h"
+#include "random_bool.hpp"
 
 using namespace std;
 

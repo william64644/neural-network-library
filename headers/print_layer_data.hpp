@@ -2,9 +2,9 @@
 
 #include <vector>
 
-#include "Layer.h"
-#include "print_vector.h"
-#include "print_matrix.h"
+#include "Layer.hpp"
+#include "print_vector.hpp"
+#include "print_matrix.hpp"
 
 using namespace std;
 

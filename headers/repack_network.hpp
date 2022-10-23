@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Network.h"
-#include "vector_packager.h"
-#include "double_packager.h"
+#include "Network.hpp"
+#include "vector_packager.hpp"
+#include "double_packager.hpp"
 
 using namespace std;
 

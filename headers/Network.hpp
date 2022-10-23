@@ -3,10 +3,10 @@
 #include <vector>
 #include <iostream>
 
-#include "Layer.h"
-#include "print_layer_data.h"
-#include "layer_runner.h"
-#include "absolute_difference.h"
+#include "Layer.hpp"
+#include "print_layer_data.hpp"
+#include "layer_runner.hpp"
+#include "absolute_difference.hpp"
 
 using namespace std;
 

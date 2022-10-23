@@ -2,9 +2,8 @@
 
 #include <cmath>
 
-#include "Layer.h"
-#include "reset_vector.h"
-#include "join_threads.h"
+#include "Layer.hpp"
+#include "reset_vector.hpp"
 
 using namespace std;
 

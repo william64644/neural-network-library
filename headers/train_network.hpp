@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Network.h"
-#include "ramdomly_variate_network_weights.h"
-#include "get_network_total_error.h"
+#include "Network.hpp"
+#include "ramdomly_variate_network_weights.hpp"
+#include "get_network_total_error.hpp"
 
 void train_network(Network &network, int max_variation, vector<vector<vector<double>>> in_out_settings, int iterations = 20000)
 {

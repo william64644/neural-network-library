@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "get_int_matrix_from_double_matrix.h"
-#include "write_pgm.h"
+#include "get_int_matrix_from_double_matrix.hpp"
+#include "write_pgm.hpp"
 
 using namespace std;
 

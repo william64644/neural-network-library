@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "read_file.h"
-#include "split.h"
+#include "read_file.hpp"
+#include "split.hpp"
 
 using namespace std;
 

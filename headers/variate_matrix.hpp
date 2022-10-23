@@ -4,7 +4,7 @@
 #include <sstream>
 #include <chrono>
 
-#include "variate.h"
+#include "variate.hpp"
 
 using namespace std;
 

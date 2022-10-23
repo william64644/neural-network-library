@@ -2,9 +2,10 @@
 
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
-#include "is_largest.h"
-#include "colors.h"
+#include "is_largest.hpp"
+#include "colors.hpp"
 
 using namespace std;
 

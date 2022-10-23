@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Network.h"
-#include "variate_matrix.h"
+#include "Network.hpp"
+#include "variate_matrix.hpp"
 
 void ramdomly_variate_network_weights(Network &network, int variation)
 {
