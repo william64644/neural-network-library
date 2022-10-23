@@ -30,28 +30,9 @@ int main()
 
 	repack_network(network, "networks/untrained_");
 
-	//print_vector(labeled_in_out[0][0]);
-	// Train
-	
-	//network.run_network();s
-	
-	Network trained_network = get_funneled_trained_network(network, labeled_in_out, 20, 40000);
-	
-	repack_network(trained_network, "networks/trained_");
-	
-	trained_network.run_network();
-	trained_network.print_network();
-	
-	// Looping through labeled in/outs
-	for (int labeled_in_out_indice = 0; labeled_in_out_indice < labeled_in_out.size(); labeled_in_out_indice ++)
-	{
-		trained_network.expected_output = labeled_in_out[labeled_in_out_indice][1];
-		
-		vector<double> game_input = ask_network_input_from_user(3);
-		trained_network.layers[0].neurons = game_input;
-		trained_network.run_network();
-		trained_network.print_network();
-	}
+
+
+
 
 	
 	return 0;

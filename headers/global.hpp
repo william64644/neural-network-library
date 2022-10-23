@@ -20,9 +20,9 @@
 #include "matrix_transponser.hpp"
 #include "double_packager.hpp"
 #include "ask_network_input_from_user.hpp"
-#include "join_threads.hpp"
+
 #include "repack_network.hpp"
-#include "train_network.hpp"
+
 #include "write_file.hpp"
 #include "repack.hpp"
 #include "layer_runner.hpp"
@@ -31,9 +31,9 @@
 #include "random_bool.hpp"
 #include "variate_matrix.hpp"
 #include "multiply_scalar_by_vector.hpp"
-#include "get_funneled_trained_network.hpp"
+
 #include "print_vector.hpp"
 #include "absolute_difference.hpp"
 #include "get_variation_scope.hpp"
-#include "get_tokenized_strings.hpp"
+
 #include "get_vectorized_string.hpp"
