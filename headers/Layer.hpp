@@ -11,6 +11,7 @@ struct Layer // give it the size of the layer and the size of the next layer (0 
     vector<vector<double>> weights;
     string name;
     vector<string> parameter_names;
+    
     Layer(unsigned int size, unsigned int next_layer_size, string name = "Layer", vector<string> parameter_names = {})
     {
         neurons = vector<double>(size);

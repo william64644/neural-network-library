@@ -9,19 +9,19 @@
 
 using namespace std;
 
-double variate(double num, int max_variation = 10)
+double variate(double num, double max_variation)
 {
 	srand(std::chrono::system_clock::now().time_since_epoch().count());
-	double absolute_variation = rand() % max_variation;
+	double variation = (float(rand())/float((RAND_MAX)) * max_variation);
 
-	absolute_variation = absolute_variation / 100;
+	variation = variation / 10;
 
 	if (random_bool())
 	{
-		return (abs(num + num * absolute_variation));
+		return (num + variation);
 	}
 	else
 	{
-		return (abs(num - num * absolute_variation));
+		return (num - variation);
 	}
 }

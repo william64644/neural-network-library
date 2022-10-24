@@ -17,7 +17,7 @@ void layer_runner(Layer &A_layer, Layer &B_layer)
         for (unsigned int weight_i = 0; weight_i < A_layer.weights[0].size(); weight_i++)
         {
             // Multiply and sum
-            B_layer.neurons[weight_i] += A_layer.neurons[neuron_i] * A_layer.weights[neuron_i][weight_i];
+            B_layer.neurons[weight_i] += A_layer.neurons[neuron_i] * A_layer.weights[neuron_i][weight_i] + B_layer.biases[weight_i];
         }
     }
 

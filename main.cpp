@@ -9,6 +9,8 @@
 #include "headers/print_vector.hpp"
 #include "headers/repack_pgm.hpp"
 #include "headers/dpkg.hpp"
+#include "headers/Population.hpp"
+
 
 // ssssssssssssssssssssss
 // output.shrink_to_fit();
@@ -22,19 +24,16 @@ int main()
 	Layer input(3, 3, "Input", {"Rock", "Paper", "Scissor"});
 	Layer output(3, 0, "Output", {"Rock", "Paper", "Scissor"});
 
-	Network network({input, output});
-
-	matrix_randomizer(network.layers[0].weights);
-
 	vector<vector<vector<double>>> labeled_in_out = {{{1,0,0},{0,1,0}},{{0,1,0},{0,0,1}},{{0,0,1},{1,0,0}}};
 
-	repack_network(network, "networks/untrained_");
+	Network network({input, output}, labeled_in_out);
+	
+	Population pop(network, 1000);
 
+	pop.multi_run(1, 0.5);
 
-
-
-
+	pop.best->print_network();
 	
 	return 0;
 }
-// sssssssssssssssssssssssssssssss
+// ssssssssssssssssssssssssssssssssssssssssssssssssssssssss

@@ -2,11 +2,11 @@
 
 #include "reset_vector.hpp"
 #include "variate.hpp"
-#include "get_network_total_error.hpp"
+
 #include "print_matrix.hpp"
 #include "average.hpp"
 #include "colors.hpp"
-#include "ramdomly_variate_network_weights.hpp"
+#include "randomly_variate_network_weights.hpp"
 #include "reset_matrix.hpp"
 #include "in.hpp"
 #include "vector_packager.hpp"

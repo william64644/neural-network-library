@@ -13,15 +13,19 @@ using namespace std;
 struct Network
 {
     double error;
+    double default_error;
     vector<Layer> layers;
-    vector<double> expected_output;
+    vector<vector<vector<double>>> learning_samples;
 
-    Network(vector<Layer> layers, vector<double> expected_output = {})
+    //Network() = default;
+    Network(vector<Layer> layers, vector<vector<vector<double>>>learning_samples = {})
     {
         this->layers = layers;
-        this->expected_output = expected_output;
-        error = layers.back().neurons.size() + layers[0].neurons.size();
+        this->learning_samples = learning_samples;
+        this->error = layers.back().neurons.size();
+        this->default_error = this->error;
     }
+    
 
     void print_network()
     {
@@ -30,18 +34,29 @@ struct Network
         {
             print_layer_data(layers[i]);
         }
-        cout << "Cache Error: " << error << '\n';
+        cout << "Error: " << error << '\n';
         cout << "================================\n";
     }
 
     void run_network()
     {
-        error = 404;
+        //running each layer
         for (unsigned int i = 0; i < layers.size() - 1; i++)
         {
             layer_runner(layers[i], layers[i + 1]);
         }
-        
-        error = absolute_difference(layers.back().neurons, expected_output);
     }
+
+    void run_test()
+    {
+        this->error = 0;
+        for (int learning_sample = 0; learning_sample < learning_samples.size(); learning_sample++)
+        {
+            this->layers[0].neurons = learning_samples[learning_sample][0];
+            run_network();
+            this->error += absolute_difference(this->layers.back().neurons, learning_samples[learning_sample][1]);
+        }
+        //cout << error << '\n';
+    }
+        
 };
