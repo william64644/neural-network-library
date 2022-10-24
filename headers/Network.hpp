@@ -17,7 +17,7 @@ struct Network
     vector<Layer> layers;
     vector<vector<vector<double>>> learning_samples;
 
-    //Network() = default;
+    Network() = default;
     Network(vector<Layer> layers, vector<vector<vector<double>>>learning_samples = {})
     {
         this->layers = layers;
