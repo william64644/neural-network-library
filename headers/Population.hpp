@@ -30,14 +30,14 @@ struct Population
 
     void mutate(double variation, int mutation_chance = 100)
     {
-        vector<thread> threads;
+        //vector<thread> threads;
         for (int i = 0; i < size; i++)
         {
-            threads.push_back(thread(randomly_variate_network_weights, ref(networks[i]), variation, mutation_chance));
-            //randomly_variate_network_weights(networks[i], variation, mutation_chance);
+            //threads.push_back(thread(randomly_variate_network_weights, ref(networks[i]), variation, mutation_chance));
+            randomly_variate_network_weights(networks[i], variation, mutation_chance);
             
         }
-        join_thread_vector(threads);
+        //join_thread_vector(threads);
     }
 
     void test()
