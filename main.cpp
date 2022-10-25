@@ -13,7 +13,7 @@
 #include "headers/vector_packager.hpp"
 
 
-// ssssssssssssssssssssss
+// ssssssssssssssssssssssss
 // output.shrink_to_fit();
 
 using namespace std;
@@ -29,8 +29,8 @@ int main()
 
 	vector<vector<vector<double>>> labeled_in_out = {{{1,0,0},{0,1,0}},{{0,1,0},{0,0,1}},{{0,0,1},{1,0,0}}};
 
-	Network network({input, hidden1, hidden2, output}, labeled_in_out);
-	
+	Network network({input, output}, labeled_in_out);
+
 	Population pop(network, 100);
 
 
@@ -39,7 +39,15 @@ int main()
 	pop.best.print_network();
 
 	vector_packager(pop.error_history, "error_history.txt");
-	
+
 	return 0;
 }
 // sssssssssssssssssss
+
+// TODO: Functions refactor
+	// Revise the name of all functions
+	// Revise the implementation of all functions
+
+// TODO: Update README.md
+
+// TODO: Use Cmake intead of a custom bash script
