@@ -5,10 +5,11 @@
 
 using namespace std;
 
-double absolute_difference(vector<double> list1, vector<double> list2)
+double vector_numeric_difference(vector<double> list1, vector<double> list2)
 {
+    const int LISTS_LENGHT = list1.size();
     double difference = 0;
-    for (unsigned int i = 0; i < values.size(); i++)
+    for (int i = 0; i < LISTS_LENGHT; i++)
     {
         difference += abs(list1[i] - list2[i]);
     }

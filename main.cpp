@@ -1,9 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
-//#include <SFML/Graphics.hpppp>
 #include <cmath>
-#include "headers/global.hpp"
+
 #include "headers/repack_network.hpp"
 #include "headers/print_matrix.hpp"
 #include "headers/print_vector.hpp"

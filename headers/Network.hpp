@@ -6,7 +6,7 @@
 #include "Layer.hpp"
 #include "print_layer_data.hpp"
 #include "layer_runner.hpp"
-#include "absolute_difference.hpp"
+#include "vector_numeric_difference.hpp"
 
 using namespace std;
 
@@ -54,7 +54,7 @@ struct Network
         {
             this->layers[0].neurons = learning_samples[learning_sample][0];
             run_network();
-            this->error += absolute_difference(this->layers.back().neurons, learning_samples[learning_sample][1]);
+            this->error += vector_numeric_difference(this->layers.back().neurons, learning_samples[learning_sample][1]);
         }
         //cout << error << '\n';
     }

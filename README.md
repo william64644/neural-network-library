@@ -61,7 +61,7 @@ Transpose a matrix
 	double average(vector<double> vec)
 Get the average of the values in a vector
 
-	double absolute_difference(double test_set[], vector<double> values)
+	double vector_numeric_difference(double test_set[], vector<double> values)
 compare two vectors and return the total difference between them
 
 	bool is_largest(vector<double> vec, unsigned int indice)
