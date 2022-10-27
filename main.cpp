@@ -11,9 +11,7 @@
 #include "headers/Population.hpp"
 #include "headers/vector_packager.hpp"
 
-
-// ssssssssssssssssssssssss
-// output.shrink_to_fit();
+// ssssssssssssssss
 
 using namespace std;
 
@@ -22,26 +20,27 @@ int main()
 
 	// Create network
 	Layer input(3, 3, "Input", {"Rock", "Paper", "Scissor"});
-	Layer hidden1(3, 3);
-	Layer hidden2(3, 3);
+	Layer hidden1(4, 4, "Hidden 1");
+	Layer hidden2(4, 3, "Hidden 2");
 	Layer output(3, 0, "Output", {"Rock", "Paper", "Scissor"});
 
 	vector<vector<vector<double>>> labeled_in_out = {{{1,0,0},{0,1,0}},{{0,1,0},{0,0,1}},{{0,0,1},{1,0,0}}};
 
-	Network network({input, output}, labeled_in_out);
+	Network network({input, hidden1, hidden2, output}, labeled_in_out);
 
 	Population pop(network, 100);
 
+	pop.do_genetic_train(1000, 5, 50);
 
-	pop.multi_run(10000, 5, 20);
+	Network trained_net = pop.best_net;
 
-	pop.best.print_network();
+	trained_net.printed_test();
 
-	vector_packager(pop.error_history, "error_history.txt");
+	//vector_packager(pop.error_history, "mutations_experiment/10.txt", true);
 
 	return 0;
 }
-// sssssssssssssssssss
+// sssssssssssssssss
 
 // TODO: Functions refactor
 	// Revise the name of all functions
@@ -50,3 +49,5 @@ int main()
 // TODO: Update README.md
 
 // TODO: Use Cmake intead of a custom bash script
+
+// TODO: selectable activation function using a map of string to function pointer, reff at: https://stackoverflow.com/questions/1952175/how-can-i-call-a-function-using-a-function-pointer

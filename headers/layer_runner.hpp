@@ -4,6 +4,7 @@
 
 #include "Layer.hpp"
 #include "reset_vector.hpp"
+#include "activators.hpp"
 
 using namespace std;
 
@@ -24,6 +25,6 @@ void layer_runner(Layer &A_layer, Layer &B_layer)
     // Activation function over all neurons
     for (unsigned int k = 0; k < B_layer.neurons.size(); k++)
     {
-        B_layer.neurons[k] = tanh(B_layer.neurons[k]);
+        B_layer.neurons[k] = hyperbolic_tangent(B_layer.neurons[k]);
     }
 }

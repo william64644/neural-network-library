@@ -34,7 +34,7 @@ struct Network
         {
             print_layer_data(layers[i]);
         }
-        cout << "Error: " << error << '\n';
+        //cout << "Error: " << error << '\n';
         cout << "================================\n";
     }
 
@@ -57,6 +57,29 @@ struct Network
             this->error += vector_numeric_difference(this->layers.back().neurons, learning_samples[learning_sample][1]);
         }
         //cout << error << '\n';
+    }
+
+    bool is_formed()
+    {
+        // Detecting wether this network has it's layers defined
+        // or if it is still just a default empty constructor
+        // based on wether default_error was defined or not
+        if (this->default_error != NULL)
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    void printed_test()
+    {
+        for (int i = 0; i < this->learning_samples.size(); i++)
+        {
+            this->layers[0].neurons = this->learning_samples[i][0];
+            this->run_network();
+            this->print_network();
+        }
     }
         
 };

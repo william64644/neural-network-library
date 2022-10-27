@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void repack(vector<vector<double>> data, string output_file)
+void repack(vector<vector<double>> data, string output_file, bool append_mode = false)
 {
     vector<string> output(data.size());
     for (unsigned int i1 = 0; i1 < data.size(); i1++)
@@ -16,5 +16,5 @@ void repack(vector<vector<double>> data, string output_file)
             output[i1] = output[i1] + to_string(data[i1][i2]) + ' ';
         }
     }
-    write_file(output, output_file);
+    write_file(output, output_file, append_mode);
 }

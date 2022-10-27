@@ -22,10 +22,10 @@ void mutate_matrix(vector<vector<double>> &matrix, double max_variation, int mut
             }
             
 
-            if (matrix[i][j] < 0)
-            {
-                matrix[i][j] = 0;
-            }
+            //if (matrix[i][j] < 0)
+            //{
+            //    matrix[i][j] = 0;
+            //}
         }
     }
 }
