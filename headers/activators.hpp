@@ -14,7 +14,7 @@ double perceptron(double input)
 {
     if (input > 0)
     {
-        return 1;
+        return 1.0;
     }
     return 0;
 }
@@ -27,7 +27,7 @@ double hyperbolic_tangent(double input)
 // TODO: Find out why this sigmoid not working
 double sigmoid(double input)
 {
-    return (1 / 1 + exp(input * -1));
+    return (1.0 / (1.0 + exp(input * -1.0)));
 }
 
 double leaky_relu(double input)
@@ -41,7 +41,7 @@ double leaky_relu(double input)
 
 double elu(double input)
 {
-    return exp(input) -1;
+    return exp(input) -1.0;
 }
 
 double soft_plus(double input)
