@@ -23,10 +23,10 @@ struct Population
         this->original_net = original_network;
         this->best_error = original_network.default_error;
         //this->best = &original_network;
-        //networks.resize(sizeof(original_network)*size);
+        networks.resize(sizeof(original_network)*size);
         for (int i = 0; i < size; i++)
         {
-            networks.push_back(original_network);
+            networks[i] = (original_network);
         }
     }
 
@@ -37,8 +37,8 @@ struct Population
         {
             //threads.push_back(thread(randomly_variate_network_weights, ref(networks[i]), variation, mutation_chance));
             randomly_variate_network_weights(networks[i], variation, mutation_chance);
-            
         }
+
         //join_thread_vector(threads);
     }
 
@@ -46,9 +46,9 @@ struct Population
     {
 
         int best_layer_i = 0;
-        int worst_layer_i = 0;
         for (int i = 0; i < population_size; i++)
         {
+        
             networks[i].run_test();
             if (networks[i].error < best_error)
             {
@@ -60,7 +60,8 @@ struct Population
             }
             //error_history.push_back(this->best.error);
             //cout << networks[best_layer_i].error << '\n';
-        }        
+        }
+             
         
         if (! this->best_net.is_formed())
         {
@@ -81,6 +82,7 @@ struct Population
         for (int i = 0; i < rounds; i++)
         {
             this->mutate(variation, mutation_chance);
+            cout << "here\n";
             this->test();
             this->renew();
         }

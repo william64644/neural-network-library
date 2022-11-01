@@ -13,7 +13,7 @@ previous_hash=`cat /tmp/previous_hash`
 if [[ "$current_hash" == "$previous_hash" ]]; then
     ./compiled
 else
-    g++ main.cpp -O0 -o compiled
+    g++ main.cpp -O0 -g -o compiled
     
     echo "$current_hash" > /tmp/previous_hash
 fi

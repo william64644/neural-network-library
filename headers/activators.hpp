@@ -67,5 +67,20 @@ double bounded_square(double input)
     }
 }
 
+double linear_scaling(double input)
+{
+    return input * 2;
+}
+
+double linear_down_scaling(double input)
+{
+    return input / 2;
+}
+
+double square(double input)
+{
+    return input * input;
+}
+
 // Refference at:
 // https://www.researchgate.net/profile/Aaron-Stebner-2/publication/341310767/figure/fig7/AS:890211844255749@1589254451431/Common-activation-functions-in-artificial-neural-networks-NNs-that-introduce.ppm

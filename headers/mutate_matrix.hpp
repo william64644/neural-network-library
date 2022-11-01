@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void mutate_matrix(vector<vector<double>> &matrix, double max_variation, int mutation_chance = 100)
+void mutate_matrix(vector<vector<double>> &matrix, double max_variation, int mutation_chance = 100, bool allow_negative = false)
 {
     //srand(std::chrono::system_clock::now().time_since_epoch().count());
     for (unsigned int i = 0; i < matrix.size(); i++)
@@ -18,7 +18,7 @@ void mutate_matrix(vector<vector<double>> &matrix, double max_variation, int mut
         {
             if (chance(mutation_chance))
             {
-                matrix[i][j] = variate(matrix[i][j], max_variation);
+                matrix[i][j] = variate(matrix[i][j], max_variation, allow_negative);
             }
             
 

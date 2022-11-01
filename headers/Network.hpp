@@ -13,7 +13,7 @@ using namespace std;
 struct Network
 {
     double error;
-    double default_error;
+    double default_error = 0;
     vector<Layer> layers;
     vector<vector<vector<double>>> learning_samples;
 
@@ -64,7 +64,7 @@ struct Network
         // Detecting wether this network has it's layers defined
         // or if it is still just a default empty constructor
         // based on wether default_error was defined or not
-        if (this->default_error != NULL)
+        if (this->default_error != 0)
         {
             return true;
         } else {

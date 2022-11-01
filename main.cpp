@@ -12,7 +12,7 @@
 #include "headers/vector_packager.hpp"
 #include "tests/unit/test_activators.hpp"
 
-// sssssssssssssssssss
+// sssssssssssss
 
 using namespace std;
 
@@ -20,46 +20,31 @@ int main()
 {
 
 	// Create network
-	//Layer input(3, 5, "Input", {"Rock", "Paper", "Scissor"});
-	//Layer hidden1(5, 5, "Hidden 1");
-	//Layer hidden2(5, 3, "Hidden 2");
-	//Layer output(3, 0, "Output", {"Rock", "Paper", "Scissor"});
+	Layer input(3, 8, "Input", {"Rock", "Paper", "Scissor"});
+	Layer hidden1(8, 16, "Hidden 1");
+	Layer hidden2(16, 8, "Hidden 2");
+	Layer hidden3(8, 3, "Hidden 3");
+	Layer output(3, 0, "Output", {"Rock", "Paper", "Scissor"});
 
-	//vector<vector<vector<double>>> labeled_in_out = {{{1,0,0},{0,1,0}},{{0,1,0},{0,0,1}},{{0,0,1},{1,0,0}}};
+	vector<vector<vector<double>>> labeled_in_out = {{{1,0,0},{0,1,0}},{{0,1,0},{0,0,1}},{{0,0,1},{1,0,0}}};
 
-	//Network network({input, hidden1, hidden2, output}, labeled_in_out);
+	Network network({input, hidden1, hidden2, hidden3, output}, labeled_in_out);
 
-	//Population pop(network, 100);
+	Population pop(network, 100);
 
-	//pop.do_genetic_train(1000, 5, 50);
+	pop.do_genetic_train(100, 100, 100);
 
-	//Network trained_net = pop.best_net;
+	Network trained_net = pop.best_net;
 
-	//trained_net.printed_test();
-
-	//vector_packager(pop.error_history, "mutations_experiment/10.txt", true);
-
-
-
-
-
-
-
-	double inputs[7] = {-1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5};
-
-
-	for (int i = 0; i < size(inputs); i++)
-	{
-		cout << elu(inputs[i]) << '\n';
-	}
+	trained_net.printed_test();
 
 	return 0;
 }
-// sssssssssssssssssssssss
+// sssssssssssss
 
 // TODO: Functions refactor
-	// Revise the name of all functions
-	// Revise the implementation of all functions
+// Revise the name of all functions
+// Revise the implementation of all functions
 
 // TODO: Update README.md
 

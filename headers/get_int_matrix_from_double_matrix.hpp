@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -13,8 +14,7 @@ vector<vector<int>> get_int_matrix_from_double_matrix(vector<vector<double>> dou
 	{
 		for (int x = 0; x < double_matrix[y].size(); x ++)
 		{
-			double_matrix[x][y] = double_matrix[x][y] * 1000; // scale up matrix data
-			int_matrix[x][y] = static_cast<int> (double_matrix[x][y]);
+			int_matrix[x][y] = (int) (round(double_matrix[x][y]));
 		}
 	}
 	
