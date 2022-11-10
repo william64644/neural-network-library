@@ -79,10 +79,15 @@ struct Population
 
     void do_genetic_train(int rounds, double variation, int mutation_chance = 100)
     {
+        // TODO: doing this check is breaking 2 clean code rules
+        if (! this->best_net.is_formed())
+        {
+            this->best_net = original_net;
+        }
+
         for (int i = 0; i < rounds; i++)
         {
             this->mutate(variation, mutation_chance);
-            cout << "here\n";
             this->test();
             this->renew();
         }
