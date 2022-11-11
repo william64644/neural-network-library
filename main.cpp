@@ -21,13 +21,23 @@ int main()
 {
 
 	// Create network
-	Layer input(3, 3, "Input", {"Rock", "Paper", "Scissor"});
+	Layer input(2, 5, "Input");
 	Layer hidden1(5, 4, "Hidden 1");
 	Layer hidden2(4, 5, "Hidden 2");
-	Layer hidden3(5, 3, "Hidden 3");
-	Layer output(3, 0, "Output", {"Rock", "Paper", "Scissor"});
+	Layer hidden3(5, 1, "Hidden 3");
+	Layer output(1, 0, "Output");
 
-	vector<vector<vector<double>>> labeled_in_out = {{{1,0,0},{0,1,0}},{{0,1,0},{0,0,1}},{{0,0,1},{1,0,0}}};
+	vector<vector<vector<double>>> labeled_in_out;
+	
+	vector<vector<double>> outer_spots = dpkg("circle_data_outer.txt");
+	vector<vector<double>> inner_spots = dpkg("circle_data_inner.txt");
+	
+	for (int i = 0; i < outer_spots.size(); i++)
+	{
+		labeled_in_out.push_back({outer_spots[i], {0.0}});
+		labeled_in_out.push_back({inner_spots[i], {1.0}});
+	}
+	
 
 	Network network({input, hidden1, hidden2, hidden3, output}, labeled_in_out);
 
@@ -36,12 +46,10 @@ int main()
 	pop.do_genetic_train(100, 5, 10);
 
 	Network trained_net = pop.best_net;
+	
+	randomly_variate_network_weights(trained_net, 5);
 
 	trained_net.printed_test();
-
-
-	vector<string> csv_header = {"Rock", "Paper", "Scissor"};
-	write_csv(trained_net.layers[2].weights, csv_header, "test.csv");
 
 
 	return 0;
