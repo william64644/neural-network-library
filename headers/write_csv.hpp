@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void write_csv(vector<vector<double>> double_matrix, vector<string> csv_header, string file_name, string separator = ",")
+void write_csv(vector<vector<double>> &double_matrix, vector<string> &csv_header, string &file_name, string separator = ",")
 {
     vector<vector<string>> text_matrix = get_string_matrix_from_double_matrix(double_matrix);
     text_matrix.reserve(text_matrix.size() + 1);

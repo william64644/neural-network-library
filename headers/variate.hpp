@@ -9,7 +9,7 @@
 
 using namespace std;
 
-double variate(double num, double max_variation, bool allow_negative = true)
+double variate(double &num, double &max_variation, bool allow_negative = false)
 {
 	srand(std::chrono::system_clock::now().time_since_epoch().count());
 	double variation = (float(rand())/float((RAND_MAX)) * max_variation);

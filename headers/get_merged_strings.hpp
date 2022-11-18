@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-std::string get_merged_strings(std::vector<std::string> strings)
+std::string get_merged_strings(std::vector<std::string> &strings)
 {
 	std::string output;
 

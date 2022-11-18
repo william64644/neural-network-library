@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void write_file(vector<string> data, string file_name, bool append_mode = false)
+void write_file(vector<string> &data, string &file_name, bool append_mode = false)
 {
     fstream file;
 

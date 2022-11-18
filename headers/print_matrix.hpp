@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void print_matrix(vector<vector<double>> matrix)
+void print_matrix(vector<vector<double>> &matrix)
 {
     for (unsigned int i = 0; i < matrix.size(); i++)
     {

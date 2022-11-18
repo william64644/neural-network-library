@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-std::vector<double> get_vectorized_string(std::vector<std::string> tokens, std::vector<std::string> input)
+std::vector<double> get_vectorized_string(std::vector<std::string> &tokens, std::vector<std::string> &input)
 {
 	std::vector<double> output(tokens.size());
 	

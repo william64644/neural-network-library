@@ -17,7 +17,7 @@ struct Population
     vector<double> error_history;
     double best_error;
 
-    Population(Network original_network, int size)
+    Population(Network &original_network, int size)
     {
         this->population_size = size;
         this->original_net = original_network;
@@ -28,6 +28,9 @@ struct Population
         {
             networks[i] = (original_network);
         }
+        
+        networks[0].run_test();
+        this->best_error = networks[0].error;
     }
 
     void mutate(double variation, int mutation_chance = 100)
@@ -36,21 +39,25 @@ struct Population
         for (int i = 0; i < population_size; i++)
         {
             //threads.push_back(thread(randomly_variate_network_weights, ref(networks[i]), variation, mutation_chance));
-            randomly_variate_network_weights(networks[i], variation, mutation_chance);
+            randomly_variate_network_weights(networks[i], variation, mutation_chance, true);
         }
 
         //join_thread_vector(threads);
     }
 
-    void test()
+    void test_population()
     {
 
         int best_layer_i = 0;
+
+        
+
         for (int i = 0; i < population_size; i++)
         {
-        
-            networks[i].run_test();
-            if (networks[i].error < best_error)
+    
+            //cout << networks[i].default_error << '\n';
+            cout << networks[i].error << '\n';
+            if (networks[i].error < this->best_error)
             {
                 best_layer_i = i;
                 cout << networks[best_layer_i].error << '\n';
@@ -59,7 +66,7 @@ struct Population
                 error_history.push_back(this->best_net.error);
             }
             //error_history.push_back(this->best.error);
-            //cout << networks[best_layer_i].error << '\n';
+            
         }
              
         
@@ -85,11 +92,12 @@ struct Population
             this->best_net = original_net;
         }
 
-        for (int i = 0; i < rounds; i++)
+        for (double i = 0; i < rounds; i++)
         {
             this->mutate(variation, mutation_chance);
-            this->test();
+            this->test_population();
             this->renew();
+            //cout << (i+1) / rounds * 100.0 << "%\n";
         }
     }
 };

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void print_vector(vector<double> vec)
+void print_vector(vector<double> &vec)
 {
     for (unsigned int i = 0; i < vec.size(); i++)
     {

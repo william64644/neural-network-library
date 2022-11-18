@@ -5,12 +5,12 @@
 
 using namespace std;
 
-double relu(double input)
+double relu(double &input)
 {
     return max(0.0, input);
 }
 
-double perceptron(double input)
+double perceptron(double &input)
 {
     if (input > 0)
     {
@@ -19,18 +19,17 @@ double perceptron(double input)
     return 0;
 }
 
-double hyperbolic_tangent(double input)
+double hyperbolic_tangent(double &input)
 {
     return tanh(input);
 }
 
-// TODO: Find out why this sigmoid not working
-double sigmoid(double input)
+double sigmoid(double &input)
 {
     return (1.0 / (1.0 + exp(input * -1.0)));
 }
 
-double leaky_relu(double input)
+double leaky_relu(double &input)
 {
     if (input < 0)
     {
@@ -39,45 +38,48 @@ double leaky_relu(double input)
     return input;
 }
 
-double elu(double input)
+double elu(double &input)
 {
-    return exp(input) -1.0;
+    return exp(input) - 1.0;
 }
 
-double soft_plus(double input)
+double soft_plus(double &input)
 {
     return log(1 + exp(input));
 }
 
-double stepper(double input)
+double stepper(double &input)
 {
-    return round(input*10)/10;
+    return round(input * 10) / 10;
 }
 
-double bounded_square(double input)
+double bounded_square(double &input)
 {
     if (input < 0.0)
     {
         return 0.0;
-    } else if (input > 1.0)
+    }
+    else if (input > 1.0)
     {
         return 1.0;
-    } else {
+    }
+    else
+    {
         return input * input;
     }
 }
 
-double linear_scaling(double input)
+double linear_scaling(double &input)
 {
     return input * 2;
 }
 
-double linear_down_scaling(double input)
+double linear_down_scaling(double &input)
 {
     return input / 2;
 }
 
-double square(double input)
+double square(double &input)
 {
     return input * input;
 }

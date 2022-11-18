@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int get_biggest_in_matrix(vector<vector<int>> data)
+int get_biggest_in_matrix(vector<vector<int>> &data)
 {
     int biggest = 0;
 

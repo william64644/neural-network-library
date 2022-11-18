@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<vector<string>> get_string_matrix_from_double_matrix(vector<vector<double>> double_matrix)
+vector<vector<string>> get_string_matrix_from_double_matrix(vector<vector<double>> &double_matrix)
 {
     vector<vector<string>> string_matrix(double_matrix.size(), vector<string>(double_matrix[0].size()));
 

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<double> ask_network_input_from_user(int numbers_ammount)
+vector<double> ask_network_input_from_user(int &numbers_ammount)
 {
 	vector<double> nums;
 	cout << "Type " << numbers_ammount << " numbers" << '\n';

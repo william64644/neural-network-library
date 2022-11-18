@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<vector<double>> matrix_transponser(vector<vector<double>> matrix)
+vector<vector<double>> matrix_transponser(vector<vector<double>> &matrix)
 {
     vector<vector<double>> transposed_matrix;
     for (unsigned int i = 0; i < matrix[0].size(); i++)

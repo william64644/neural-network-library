@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Network get_geneticaly_trained_network(Network network, int generarions, int iterations, double training_rate)
+Network get_geneticaly_trained_network(Network &network, int &generarions, int &iterations, double &training_rate)
 {
     Network cache = network;
     Network best = network;

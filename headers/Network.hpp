@@ -22,7 +22,7 @@ struct Network
     {
         this->layers = layers;
         this->learning_samples = learning_samples;
-        this->error = layers.back().neurons.size();
+        this->error = layers.back().neurons.size() * layers.back().neurons.size();
         this->default_error = this->error;
     }
     
@@ -32,7 +32,7 @@ struct Network
         cout << "================================\n";
         for (unsigned int i = 0; i < layers.size(); i++)
         {
-            print_layer_data(layers[i]);
+            print_layer_data(this->layers[i]);
         }
         //cout << "Error: " << error << '\n';
         cout << "================================\n";
@@ -43,7 +43,7 @@ struct Network
         //running each layer
         for (unsigned int i = 0; i < layers.size() - 1; i++)
         {
-            layer_runner(layers[i], layers[i + 1]);
+            layer_runner(this->layers[i], this->layers[i + 1]);
         }
     }
 

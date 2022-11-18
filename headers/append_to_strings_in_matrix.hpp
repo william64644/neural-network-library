@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void append_to_strings_in_matrix(vector<vector<string>> &matrix, string appending_text)
+void append_to_strings_in_matrix(vector<vector<string>> &matrix, string &appending_text)
 {
     for (int i = 0; i < matrix.size(); i++)
     {

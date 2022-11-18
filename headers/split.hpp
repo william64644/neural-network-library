@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<string> split(string str, char delimiter = ' ')
+vector<string> split(string &str, char delimiter = ' ')
 {
     vector<string> words;
     stringstream ss(str); // Turn the string into a stream.

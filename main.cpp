@@ -11,45 +11,63 @@
 #include "headers/Population.hpp"
 #include "headers/vector_packager.hpp"
 #include "headers/write_csv.hpp"
+#include "headers/print_3d_matrix.hpp"
 //#include "tests/unit/test_activators.hpp"
 
-// ssssssssssssss
+// ssssssssssssssssss
 
 using namespace std;
 
 int main()
 {
-
-	// Create network
-	Layer input(2, 5, "Input");
-	Layer hidden1(5, 4, "Hidden 1");
-	Layer hidden2(4, 5, "Hidden 2");
-	Layer hidden3(5, 1, "Hidden 3");
-	Layer output(1, 0, "Output");
-
-	vector<vector<vector<double>>> labeled_in_out;
 	
-	vector<vector<double>> outer_spots = dpkg("circle_data_outer.txt");
-	vector<vector<double>> inner_spots = dpkg("circle_data_inner.txt");
+	// Create network
+	Layer input(2, 16, "Input");
+	Layer hidden1(16, 16, "Hidden 1");
+	Layer hidden2(16, 16, "Hidden 2");
+	Layer hidden3(16, 16, "Hidden 3");
+	Layer hidden4(16, 1, "Hidden 4");
+	Layer output(1, 0, "Output");
+	
+	vector<vector<vector<double>>> labeled_in_out;
+	vector<vector<vector<double>>> labeled_in_out2 = {{{1,0,0},{0,1,0}},{{0,1,0},{0,0,1}},{{0,0,1},{1,0,0}}};
+	
+	vector<vector<double>> outer_spots = dpkg("triangle_data_up.txt");
+	vector<vector<double>> inner_spots = dpkg("triangle_data_down.txt");
 	
 	for (int i = 0; i < outer_spots.size(); i++)
 	{
-		labeled_in_out.push_back({outer_spots[i], {0.0}});
-		labeled_in_out.push_back({inner_spots[i], {1.0}});
+		labeled_in_out.push_back({outer_spots[i], {1.0}});
+		labeled_in_out.push_back({inner_spots[i], {0.0}});
 	}
 	
 
-	Network network({input, hidden1, hidden2, hidden3, output}, labeled_in_out);
+	Network network({input, hidden1, hidden2, hidden3, hidden4, output}, labeled_in_out);
 
 	Population pop(network, 100);
 
-	pop.do_genetic_train(100, 5, 10);
+	pop.do_genetic_train(200, 2, 90);
 
 	Network trained_net = pop.best_net;
 	
-	randomly_variate_network_weights(trained_net, 5);
+	randomly_variate_network_weights(trained_net, 10, 10);
 
 	trained_net.printed_test();
+
+	vector<vector<double>> image(500, vector<double>(500, 0.0));
+
+	
+	for (double i = 0; i < 500; i++)
+	{
+		for (double j = 0; j < 500; j++)
+		{
+			trained_net.layers[0].neurons = {i / 500.0, j / 500.0};
+			trained_net.run_network();
+			image[i][j] = trained_net.layers.back().neurons[0] * 100;
+		}
+	}
+
+	repack_pgm(image, "image.pgm");
 
 
 	return 0;
@@ -58,7 +76,9 @@ int main()
 
 
 
-// sssssssssssssssssssssssss
+// ssssssssssssssssssssssssssssss
+
+// TODO: pass by refference whenever possible
 
 // TODO: Functions refactor
 // Revise the name of all functions

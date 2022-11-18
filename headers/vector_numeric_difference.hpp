@@ -5,7 +5,7 @@
 
 using namespace std;
 
-double vector_numeric_difference(vector<double> list1, vector<double> list2)
+double vector_numeric_difference(vector<double> &list1, vector<double> &list2)
 {
     const int LISTS_LENGHT = list1.size();
     double difference = 0;

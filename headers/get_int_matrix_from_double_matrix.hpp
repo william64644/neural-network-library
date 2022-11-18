@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<vector<int>> get_int_matrix_from_double_matrix(vector<vector<double>> double_matrix)
+vector<vector<int>> get_int_matrix_from_double_matrix(vector<vector<double>> &double_matrix)
 {
 
 	vector<vector<int>> int_matrix(double_matrix.size(), vector<int>(double_matrix[0].size()));

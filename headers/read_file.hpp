@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-vector<string> read_file(string file_name)
+vector<string> read_file(string &file_name)
 {
     vector<string> lines;
     fstream data;
