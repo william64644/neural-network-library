@@ -22,10 +22,10 @@ struct Network
     {
         this->layers = layers;
         this->learning_samples = learning_samples;
-        this->error = layers.back().neurons.size() * layers.back().neurons.size();
+        this->error = layers.back().neurons.size() * learning_samples.size();
         this->default_error = this->error;
     }
-    
+
 
     void print_network()
     {

@@ -28,7 +28,7 @@ struct Population
         {
             networks[i] = (original_network);
         }
-        
+
         networks[0].run_test();
         this->best_error = networks[0].error;
     }
@@ -52,24 +52,24 @@ struct Population
 
         
 
-        for (int i = 0; i < population_size; i++)
+        for (int i = 1; i < population_size; i++)
         {
     
             //cout << networks[i].default_error << '\n';
-            cout << networks[i].error << '\n';
+            //cout << networks[i].error << '\n';
+            networks[i].run_test();
             if (networks[i].error < this->best_error)
             {
                 best_layer_i = i;
                 cout << networks[best_layer_i].error << '\n';
                 best_error = networks[i].error;
                 this->best_net = networks[best_layer_i];
-                error_history.push_back(this->best_net.error);
+                //error_history.push_back(this->best_net.error);
             }
             //error_history.push_back(this->best.error);
-            
+
         }
-             
-        
+
         if (! this->best_net.is_formed())
         {
             this->best_net = original_net;
@@ -97,7 +97,7 @@ struct Population
             this->mutate(variation, mutation_chance);
             this->test_population();
             this->renew();
-            //cout << (i+1) / rounds * 100.0 << "%\n";
+            cout << (i+1) / rounds * 100.0 << "%\n";
         }
     }
 };

@@ -5,6 +5,7 @@
 #include "Layer.hpp"
 #include "reset_vector.hpp"
 #include "activators.hpp"
+#include "activate_vector.hpp"
 
 using namespace std;
 
@@ -25,8 +26,5 @@ void layer_runner(Layer &A_layer, Layer &B_layer)
     }
 
     // Activation function over all neurons
-    for (unsigned int k = 0; k < B_layer.neurons.size(); k++)
-    {
-        B_layer.neurons[k] = sigmoid(B_layer.neurons[k]);
-    }
+    activate_vector(B_layer.neurons);
 }
