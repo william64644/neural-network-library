@@ -1,4 +1,5 @@
 # Homemamde Neural Network Framework
+### My first experience diving into low-level AI development
 ### Slowly but surely, developing a neural network framework
 
 ## Layer struct:
